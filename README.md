@@ -1,7 +1,15 @@
 # Projeto de BD
 ## Bases de Dados (CC2005)
 
-Última atualização: 2024-10-23
+# Para executar:
+## Basta instalar o flask por:
+``` shell
+    pip3 install flask
+```
+## E executar o comando:
+``` shell
+  python3 server.py
+```
 
 # Objetivo
 O projeto pretende constituir uma oportunidade de experimentação das matérias expostas na unidade curricular, em particular a especificação de um modelo UML e respetiva tradução para um modelo relacional e a criação, o povoamento e a interrogação de BD utilizando a linguagem SQL.
