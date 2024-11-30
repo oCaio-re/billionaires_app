@@ -1,0 +1,40 @@
+.navbar {
+    background-color: #F1592A;
+    /*background-color: #54a31d;*/
+    display: flex;
+    height: 80px;
+    width: 100vw;
+    color: white;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-wrap-header {
+    /*justify-content: center;*/
+    align-items: center;
+    display: flex;
+    width: 80%;
+    height: 80%;
+    /*background-color: grey;*/
+    font-family: Roboto, sans-serif;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.content-header{
+    /*background-color: red;*/
+    display: flex;
+}
+
+.left-side-navbar{
+    /*background-color: green;*/
+    width: 55%;
+    justify-content: space-between;
+    display: flex;
+}
+
+.right-more{
+    /*background-color: red;*/
+    margin: 0 0 0 auto;
+}
+
