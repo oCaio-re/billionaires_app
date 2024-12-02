@@ -1,0 +1,6 @@
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE Industry (name varchar (100), PRIMARY KEY (name), FOREIGN KEY (name) REFERENCES Industry (name));
+INSERT INTO Industry VALUES('Automotive');
+INSERT INTO Industry VALUES('Construction & Engineering');
+COMMIT;
