@@ -2,10 +2,86 @@
 {% block content %}
     <div class="section-one-wrap">
         <div class="section-one-left">
-
+            <div class="content-wrap">
+                <div class="title-wrap">
+                    <h1 class="title">Billionaires Database</h1>
+                </div>
+                <div class="desc-wrap">
+                    <h2 class="desc-title">About</h2>
+                    <br/>
+                    <p class="desc">This webapp illustrates and showcases the dataset based on the world's top 2591
+                        billionaires and their quirks.
+                    </p>
+                    <br/>
+                    <br/>
+                    <p class="desc">The app was built using Python, Flask, Jinja, SQLite3 and Bootstrap.</p>
+                </div>
+                <div class="icons-wrap">
+                    <div class="icon">
+                        <img class="icon-img" src="../../static/images/python-icon.webp" alt="python-icon">
+                    </div>
+                    <div class="icon flask">
+                        <img class="icon-img" src="../../static/images/flask-icon.png" alt="flask-icon">
+                    </div>
+                    <div class="icon">
+                        <img class="icon-img" src="../../static/images/jinja2-icon.png" alt="jinja2-icon">
+                    </div>
+                    <div class="icon">
+                        <img class="icon-img" src="../../static/images/sqlite3-icon.jpeg" alt="sqlite3-icon">
+                    </div>
+                    <div class="icon">
+                        <img class="icon-img" src="../../static/images/boostrap-icon.webp" alt="bootstrap-icon">
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="section-one-right">
-
+            <img class="money-tree-image" src="../../static/images/money-tree-image.jpg" alt="money tree image">
         </div>
+    </div>
+
+    <div class="section-two-wrap">
+        <div class="content-wrap-two">
+            <div class="title-wrap-two"><p class="title-table"><u>THE WORLD'S RICHEST</u> </p></div>
+            <div class="table-wrap-two">
+{#                {% for k, v in {'position': 1, 'name': 'Elon Musk', 'wealth': '326.2B', 'country': 'United States', 'Company': 'Tesla'}.items() %}#}
+                    <div class="row-wrap">
+                        <div class="row-position">#1</div>
+                        <div class="row-name">Elon Musk</div>
+                        <div class="row-wealth">326.2B</div>
+                        <div class="row-country">United States</div>
+                        <div class="row-company">Tesla, SpaceX</div>
+                        <img class="row-image" alt="LOGO"/>
+                    </div>
+{#                {% endfor %}#}
+            </div>
+        </div>
+    </div>
+
+    <div class="project-desc-wrap">
+        <div class="content-wrap-project">
+            <div class="title-wrap">
+                <h2 class="title">About this project</h2>
+            </div>
+            <br/>
+            <div class="desc-wrap-project">
+                <p class="desc">The project creates an opportunity to experiment the subjects shown in the CC2005
+                    class.
+                </p>
+                <p class="desc">Its built having a database as its core in wich needed:</p>
+                <br/>
+            </div>
+            <div class="requirements-wrap">
+                <p class="requirement">.UML model specification</p>
+                <br/>
+                <p class="requirement">.ER model translation</p>
+                <br/>
+                <p class="requirement">.Creation and filling a database</p>
+                <br/>
+                <p class="requirement">.SQL Queries interaction with a frontend</p>
+                <br/>
+            </div>
+        </div>
+
     </div>
 {% endblock %}

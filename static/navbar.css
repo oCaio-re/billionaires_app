@@ -2,7 +2,7 @@
     background-color: #F1592A;
     /*background-color: #54a31d;*/
     display: flex;
-    height: 80px;
+    height: 70px;
     width: 100vw;
     color: white;
     justify-content: center;
@@ -38,3 +38,14 @@
     margin: 0 0 0 auto;
 }
 
+a:link{
+    text-decoration: none;
+}
+
+.link{
+    color: white;
+}
+
+.header-text{
+    text-decoration: none;
+}

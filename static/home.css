@@ -1,3 +1,214 @@
-.body{
+.body {
     margin: 0;
+}
+
+.section-one-wrap {
+    /*background-color: grey;*/
+    display: flex;
+    margin: 5em auto auto auto;
+    height: 40em;
+    width: 65%;
+}
+
+.section-one-left {
+    /*background-color: green;*/
+    display: flex;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    height: 100%;
+    width: 60%;
+}
+
+.section-one-left .content-wrap {
+    margin: auto;
+    /*background-color: grey;*/
+    width: 80%;
+    height: 80%;
+}
+
+.section-one-left .title-wrap {
+    /*background-color: #F1592A;*/
+    display: flex;
+    height: 20%;
+    width: 100%;
+}
+
+.section-one-left .title {
+    margin: auto auto auto 0;
+    color: #272727;
+    font-family: Nova Flat, Roboto, sans-serif;
+    font-weight: 500;
+    font-size: 3.5em;
+    /*font-family: "DejaVu Sans", sans-serif;*/
+}
+
+.section-one-left .desc-wrap {
+    /*display: flex;*/
+    /*background-color: #d56e6e;*/
+    height: 50%;
+    width: 100%;
+}
+
+.desc-wrap .desc-title {
+    font-family: Roboto, sans-serif;
+    font-size: 2.2em;
+}
+
+.desc-wrap .desc {
+    font-family: Roboto, sans-serif;
+    font-size: 1.5em;
+}
+
+.section-one-right {
+    /*background-color: red;*/
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    height: 100%;
+    margin-left: auto;
+    width: 37%;
+}
+
+.money-tree-image {
+    border-radius: 20px;
+    width: 100%;
+    height: 100%;
+}
+
+.icons-wrap {
+    /*background-color: #272727;*/
+    display: flex;
+    height: 25%;
+    justify-content: space-around;
+}
+
+.icons-wrap .icon {
+    /*background-color: green;*/
+    width: 20%;
+    display: flex;
+}
+
+.icon .icon-img {
+    /*margin: auto;*/
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.section-two-wrap{
+    display: flex;
+    border-radius: 20px;
+    margin: 3em auto 3em auto;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    height: 80em;
+    width: 65%;
+    font-family: Roboto, sans-serif;
+}
+
+.content-wrap-two{
+    /*background-color: grey;*/
+    width: 95%;
+    height: 95%;
+    margin: auto;
+}
+
+.title-wrap-two{
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.table-wrap-two{
+    /*background-color: green;*/
+    height: 98%;
+}
+
+.row-wrap{
+    /*background-color: aqua;*/
+    display: flex;
+    flex-direction: row;
+    height: 10%;
+    font-size: 1.5em;
+}
+
+.row-wrap .row-position{
+    display: flex;
+    align-items: center;
+    font-family: Roboto, sans-serif;
+    font-size: 1.5em;
+    font-weight: bold;
+    width: 6%;
+}
+
+.row-wrap .row-name{
+    display: flex;
+    align-items: center;
+    font-family: Nova Flat, sans-serif;
+    font-size: 1.5em;
+    width: 40%;
+    background-color: white;
+
+}
+
+.row-wrap .row-wealth{
+    /*background-color: red;*/
+    display: flex;
+    align-items: center;
+    font-family: Nova Flat, sans-serif;
+    font-weight: bold;
+    width: 8%;
+    justify-content: center;
+}
+
+.row-wrap .row-country{
+    /*background-color: red;*/
+    display: flex;
+    align-items: center;
+    font-family: Roboto, sans-serif;
+    font-weight: bold;
+    width: 14%;
+    justify-content: center;
+}
+
+.row-wrap .row-company{
+    /*background-color: red;*/
+    display: flex;
+    align-items: center;
+    font-family: Nova Flat, sans-serif;
+    font-weight: bold;
+    width: 15%;
+    justify-content: center;
+    white-space: break-spaces;
+}
+
+.project-desc-wrap {
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    display: flex;
+    margin: 0 auto 3em auto;
+    height: 25em;
+    width: 65%;
+}
+
+.project-desc-wrap .content-wrap-project{
+    /*background-color: grey;*/
+    margin: auto;
+    width: 90%;
+    height: 75%;
+}
+
+.content-wrap-project .title-wrap {
+    display: flex;
+    font-family: Roboto, sans-serif;
+    font-size: 1.5em;
+}
+
+.content-wrap-project .desc-wrap-project {
+    font-family: Roboto, sans-serif;
+    font-size: 1.5em;
+    font-weight: 500;
+}
+
+.requirement{
+    font-family: "DejaVu Sans", sans-serif;
+    font-style: italic;
+    font-size: 1.2em;
 }
