@@ -10,4 +10,8 @@ def home():  # put application's code here
 
 @app.route('/top10')
 def top10():
-    return 'Top10'
+    return render_template('top10/top10.html')
+
+@app.route('/all_list')
+def all_list():
+    return 'CAUA'
