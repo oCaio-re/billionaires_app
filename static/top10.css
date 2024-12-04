@@ -1,0 +1,34 @@
+.photo-grid-wrap .row-wrap{
+    /*background-color: red;*/
+    display: flex;
+    width: 100%;
+    height: 48%;
+    justify-content: space-between;
+}
+
+.photo-grid-wrap{
+    /*background-color: #4A9195;*/
+    display: flex;
+    flex-direction: column;
+    margin: 4em auto;
+    width: 80%;
+    height: 50em;
+}
+
+.row-two-wrap{
+    margin-top: auto;
+}
+
+.photo-wrap{
+    display: flex;
+    background-color: grey;
+    width: 18.6%;
+    border-radius: 10px;
+}
+
+.photo{
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}

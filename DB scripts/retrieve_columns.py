@@ -22,8 +22,8 @@ column_names = df.columns.tolist()
 #     for row in df[column]:
 #         print(f"{column}: {row}")
 
-# ------------------------------------ connecting to the database --------------------------------------------
-conn = sqlite3.connect('../database/billionaires')
+# ------------------------------------ connecting to the DB --------------------------------------------
+conn = sqlite3.connect('../DB/billionaires')
 cursor = conn.cursor()
 
 ''' Inserting data on Industry table from the EXCEL (DONE ONCE, DON'T IT DO AGAIN!!!!) '''

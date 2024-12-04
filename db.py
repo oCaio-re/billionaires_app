@@ -8,16 +8,16 @@
 #
 # def connect():
 #     global DB
-#     c = sqlite3.connect('database/billionaires', check_same_thread=False)
+#     c = sqlite3.connect('DB/billionaires', check_same_thread=False)
 #     c.row_factory = sqlite3.Row
 #     DB['conn'] = c
 #     DB['cursor'] = c.cursor()
-#     # logging.info('Connected to database')
+#     # logging.info('Connected to DB')
 #
 #
 # def execute(sql, args=None):
 #     global DB
-#     c = sqlite3.connect('database/billionaires', check_same_thread=False)
+#     c = sqlite3.connect('DB/billionaires', check_same_thread=False)
 #     c.row_factory = sqlite3.Row
 #     DB['conn'] = c
 #     DB['cursor'] = c.cursor()
