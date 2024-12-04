@@ -111,6 +111,14 @@
     margin: auto;
 }
 
+.title-table{
+    width: 47%;
+}
+
+.title-wrap-two {
+    display: flex;
+}
+
 .title-wrap-two{
     font-weight: bold;
     font-size: 1.5em;
@@ -127,6 +135,7 @@
     flex-direction: row;
     height: 10%;
     font-size: 1.5em;
+    justify-content: space-around;
 }
 
 .row-wrap .row-position{
@@ -139,21 +148,22 @@
 }
 
 .row-wrap .row-name{
+    /*background-color: white;*/
     display: flex;
     align-items: center;
     font-family: Nova Flat, sans-serif;
-    font-size: 1.5em;
+    font-size: 1.2em;
     width: 40%;
-    background-color: white;
 
 }
 
 .row-wrap .row-wealth{
     /*background-color: red;*/
+    color: #30B244;
     display: flex;
+    font-weight: bolder;
     align-items: center;
     font-family: Nova Flat, sans-serif;
-    font-weight: bold;
     width: 8%;
     justify-content: center;
 }
@@ -163,7 +173,6 @@
     display: flex;
     align-items: center;
     font-family: Roboto, sans-serif;
-    font-weight: bold;
     width: 14%;
     justify-content: center;
 }
@@ -173,10 +182,22 @@
     display: flex;
     align-items: center;
     font-family: Nova Flat, sans-serif;
-    font-weight: bold;
     width: 15%;
-    justify-content: center;
+    justify-content: left;
     white-space: break-spaces;
+    color: #4A9195;
+}
+
+.row-wrap .row-image{
+    width: 10%;
+    /*width: 10%;*/
+    /*margin: auto;*/
+}
+
+.logo-image{
+    width: 80%;
+    object-fit: contain;
+    /*margin: auto;*/
 }
 
 .project-desc-wrap {

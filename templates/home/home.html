@@ -41,22 +41,29 @@
     </div>
 
     <div class="section-two-wrap">
-        <div class="content-wrap-two">
-            <div class="title-wrap-two"><p class="title-table"><u>THE WORLD'S RICHEST</u> </p></div>
-            <div class="table-wrap-two">
-{#                {% for k, v in {'position': 1, 'name': 'Elon Musk', 'wealth': '326.2B', 'country': 'United States', 'Company': 'Tesla'}.items() %}#}
-                    <div class="row-wrap">
-                        <div class="row-position">#1</div>
-                        <div class="row-name">Elon Musk</div>
-                        <div class="row-wealth">326.2B</div>
-                        <div class="row-country">United States</div>
-                        <div class="row-company">Tesla, SpaceX</div>
-                        <img class="row-image" alt="LOGO"/>
-                    </div>
-{#                {% endfor %}#}
+    <div class="content-wrap-two">
+        <div class="title-wrap-two"><p class="title-table">
+            <u>THE WORLD'S RICHEST</u></p>
+            <p style="font-size: 0.8em; margin-right: 2em;">Wealth(in millions)</p>
+            <p style="font-size: 0.8em ; margin-right: 4em;">Country</p>
+            <p style="font-size: 0.8em">Brand</p>
+        </div>
+        <div class="table-wrap-two">
+            {% for row in top10 %}
+            <div class="row-wrap">
+                <div class="row-position">#{{ row.0 }}</div>
+                <div class="row-name">{{ row.1 }}</div>
+                <div class="row-wealth">{{ row.2 }} </div>
+                <div class="row-country">{{ row.3 }}</div>
+                <div class="row-company">{{ row.4 }}</div>
+                <div class="row-image">
+                    <img src="../../static/images/company-logos/{{ row.0 }}.png" class="logo-image" alt="LOGO"/>
+                </div>
             </div>
+            {% endfor %}
         </div>
     </div>
+</div>
 
     <div class="project-desc-wrap">
         <div class="content-wrap-project">

@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<div style="margin: 2em auto 2em auto; justify-content: center; width: 30%;">
+    <h1 style="color: #616161 ;width: 100%; text-align: center; font-size: 4em; font-family: Roboto, sans-serif">Top 10 from: {{ country }}</h1>
+</div>
 <div class="section-two-wrap">
     <div class="content-wrap-two">
         <div class="title-wrap-two"><p class="title-table">
@@ -17,13 +20,9 @@
                 <div class="row-wealth">{{ row.2 }} </div>
                 <div class="row-country">{{ row.3 }}</div>
                 <div class="row-company">{{ row.4 }}</div>
-                <div class="row-image">
-                    <img src="../../static/images/company-logos/{{ row.0 }}.png" class="logo-image" alt="LOGO"/>
-                </div>
             </div>
             {% endfor %}
         </div>
     </div>
 </div>
-
 {% endblock %}

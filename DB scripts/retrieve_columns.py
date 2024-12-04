@@ -22,8 +22,8 @@ column_names = df.columns.tolist()
 #     for row in df[column]:
 #         print(f"{column}: {row}")
 
-# ------------------------------------ connecting to the DB --------------------------------------------
-conn = sqlite3.connect('../DB/billionaires')
+# ------------------------------------ connecting to the database --------------------------------------------
+conn = sqlite3.connect('../database/billionaires')
 cursor = conn.cursor()
 
 ''' Inserting data on Industry table from the EXCEL (DONE ONCE, DON'T IT DO AGAIN!!!!) '''
@@ -50,8 +50,5 @@ for row in df.itertuples(index=False):
         row.country_of_residence, row.gdp_country, row.g_tertiary_ed_enroll, row.g_primary_ed_enroll, row.life_expectancy, row.tax_revenue, row.tax_rate, row.population, row.latitude,
         row.longitude, row.continent), )
 
-INPUT1 = 'farofa'
-    f"INSERT INTO BILLIONAIRES({INPUT1}) VALUES ({})"
-    f"SELECT c.{ID}"
 conn.commit()
 conn.close()
