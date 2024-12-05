@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="all-wrap">
+    <section class="nav-buttons">
+        <div class="nav-buttons-wrap">
+            <div class="position-wrap"><p>{{ current }}</p></div>
+            <div class="industry-wrap"><p>{{ current.6 }}</p></div>
+            <div class="country-wrap"><p>{{ current.4 }}</p></div>
+            <div class="previous-wrap"><p>{{ previous.0 }}</p></div>
+            <div class="next-wrap"><p><{{ next.0 }}/p></div>
+        </div>
+    </section>
+    <section class="profile-wrap">
+        <div class="profile-content-wrap">
+            <div class="profile-img-wrap">
+                {% if  current.2 == 'M'%}
+                    <img/>
+                {% else %}
+                    <img/>
+                {% endif %}
+            </div>
+            <div class="profile-main-infos">
+                <div class="profile-title-wrap">
+                    <p class="profile-title">{{ current.1 }}</p>
+                </div>
+                <div class="profile-wealth-wrap">
+                    <p class="profile-wealth">${{ current.3 }}M</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="personal-info">
+
+    </section>
+</div>
+{% endblock %}

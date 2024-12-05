@@ -32,3 +32,34 @@
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
+
+.form-section{
+    /*background-color: red;*/
+    height: 90%;
+}
+
+.country-form{
+    font-family: Roboto, sans-serif;
+    font-size: 1.5em;
+}
+
+.input{
+    font-size: 1em;
+    font-family: Roboto, sans-serif;
+    width: 8em;
+    height: 2em;
+}
+.submit-button{
+    width: 5em;
+    height: 2em;
+    font-size: 0.8em;
+    background-color: #F1592A;
+    border-radius: 12px;
+    color: white;
+    border: none;
+}
+
+.submit-button:hover{
+    background-color: rgba(241, 89, 42, 0.76);
+}
+
