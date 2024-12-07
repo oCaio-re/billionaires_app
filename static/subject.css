@@ -1,0 +1,185 @@
+.all-wrap{
+    /*background-color: grey;*/
+    display: flex;
+    flex-direction: column;
+    height: 50em;
+    margin: 3.5em auto;
+    width: 80em;
+}
+
+.nav-buttons-wrap{
+    /*background-color: rgba(38, 142, 167, 0.84);*/
+    height: 10%;
+}
+
+.content-nav-buttons-wrap{
+    display: flex;
+    color: white;
+    font-weight: bold;
+}
+
+.content-nav-buttons-wrap{
+    font-family: Roboto, sans-serif;
+    font-size: 1.2em;
+    align-items: center;
+    display: flex;
+    height: 100%;
+}
+
+.position-wrap{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: #F1592A;
+    border-radius: 6px;
+    display: flex;
+    height: auto;
+    width: auto;
+    padding: 11px;
+}
+
+.industry-wrap{
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: #F1592A;
+    border-radius: 6px;
+    display: flex;
+    margin-left: 1em;
+    height: auto;
+    width: auto;
+    padding: 2px 10px 2px 0;
+}
+
+.country-wrap{
+    align-items: center;
+    background-color: #4A9195;
+    box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
+    border-radius: 6px;
+    display: flex;
+    margin-left: 1em;
+    margin-right: auto;
+    height: auto;
+    width: auto;
+    padding: 2px 10px 2px 0;
+}
+
+
+.previous-wrap{
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: white;
+    border-radius: 6px;
+    color: black;
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    margin-left: auto;
+    width: auto;
+    padding: 2px 10px 2px 0;
+}
+.next-wrap{
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 6px;
+    background-color: white;
+    color: black;
+    display: flex;
+    height: auto;
+    margin-left: 2em;
+    width: auto;
+    padding: 0 10px 2px 10px;
+}
+
+.profile-wrap{
+    background-color: white;
+    display: flex;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    width: 100%;
+    height: 40%;
+    border-radius: 10px;
+}
+
+.profile-content-wrap{
+    /*background-color: green;*/
+    display: flex;
+    width: 96%;
+    height: 80%;
+    margin: auto;
+}
+
+.profile-img-wrap{
+    /*background-color: orange;*/
+    display: flex;
+    width: 20%;
+    height: 100%;
+    margin: auto 1em auto 0;
+    border-radius: 15px;
+}
+
+.profile-img{
+    width: 100%;
+    margin: auto;
+    border-radius: 15px;
+}
+
+.profile-main-infos{
+    /*background-color: red;*/
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 80%;
+    margin: auto 0;
+    font-weight: bold;
+    font-size: 3em;
+}
+
+.profile-title-wrap {
+    margin-top: 1em;
+    /*background-color: #4A9195;*/
+    height: auto;
+    font-family: Roboto, sans-serif;
+}
+
+.profile-wealth-wrap{
+    /*background-color: #4A9195;*/
+    margin-top: 0.5em;
+    font-family: Roboto, sans-serif;
+}
+
+.personal-info-wrap{
+    /*background-color: orange;*/
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 3em;
+    width: 100%;
+    height: 30%;
+}
+
+.personal-info-content-wrap{
+    /*background-color: #912400;*/
+    width: 97%;
+    height: 85%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.box{
+    /*background-color: white;*/
+    width: 30%;
+}
+
+.field{
+    font-family: Roboto, sans-serif;
+    font-weight: 500;
+    margin-bottom: 3em;
+    font-size: 1.3em;
+}
+
+.field-title{
+    color: grey;
+}
+/*position full_name */
+/*gender age birthdate city_of_residence country_of_residence source*/

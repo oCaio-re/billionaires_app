@@ -158,6 +158,10 @@
 
 }
 
+.row-name:hover{
+    color: #F1592A;
+}
+
 .row-wrap .row-wealth{
     /*background-color: red;*/
     color: #30B244;

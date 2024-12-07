@@ -1,22 +1,34 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="all-wrap">
-    <section class="nav-buttons">
-        <div class="nav-buttons-wrap">
-            <div class="position-wrap"><p>{{ current }}</p></div>
-            <div class="industry-wrap"><p>{{ current.6 }}</p></div>
-            <div class="country-wrap"><p>{{ current.4 }}</p></div>
-            <div class="previous-wrap"><p>{{ previous.0 }}</p></div>
-            <div class="next-wrap"><p><{{ next.0 }}/p></div>
+    <section class="nav-buttons-wrap">
+        <div class="content-nav-buttons-wrap">
+            <div class="position-wrap"><p>#{{ current.0 }}</p></div>
+            <div class="industry-wrap"><i class="bi bi-cash" style="margin: 0 10px 0 8px; font-size: 1.6em"></i><p>{{ current.6 }}</p></div>
+            <div class="country-wrap"><i class="bi bi-geo-alt" style="margin-right: 10px; font-size: 1.6em"></i><p>{{ current.4 }}</p></div>
+            {% if current.7 > 1 %}
+{#            <div class="previous-wrap">#}
+            <a href="/subject/{{ previous.0.0 }}" class="previous-wrap">
+                <i class="bi bi-arrow-left-short" style="font-size: 2em;"></i><p>{{ previous.0.0 }}</p>
+            </a>
+{#            </div>#}
+            {% endif %}
+            {% if current.7 < 2591 %}
+{#            <div class="next-wrap">#}
+                <a href="/subject/{{ next.0.0 }}" class="next-wrap">
+                 <p>{{ next.0.0 }}</p><i class="bi bi-arrow-right-short" style="font-size: 2em;"></i>
+                </a>
+{#            </div>#}
+            {% endif %}
         </div>
     </section>
     <section class="profile-wrap">
         <div class="profile-content-wrap">
             <div class="profile-img-wrap">
                 {% if  current.2 == 'M'%}
-                    <img/>
+                    <img class="profile-img" src="../../static/images/male-generic-profile-picture.jpg"/>
                 {% else %}
-                    <img/>
+                    <img class="profile-img" src="../../static/images/female-generic-profile-picture.jpg"/>
                 {% endif %}
             </div>
             <div class="profile-main-infos">
@@ -24,13 +36,47 @@
                     <p class="profile-title">{{ current.1 }}</p>
                 </div>
                 <div class="profile-wealth-wrap">
-                    <p class="profile-wealth">${{ current.3 }}M</p>
+                    <p class="profile-wealth"><b style="color: #30B244">${{ current.3 }}</b>B</p>
                 </div>
             </div>
         </div>
     </section>
-    <section class="personal-info">
-
+    <section class="personal-info-wrap">
+         <div style="font-family: Roboto, sans-serif; margin-left: 1em; font-size: 1.2em; font-weight: bold;">
+             <p><u>PERSONAL INFO</u></p>
+         </div>
+        <div class="personal-info-content-wrap">
+            <div class="personal-box-one box">
+                <div class="field-one field">
+                    <p class="field-title">Gender</p>
+                    <p>{{ current.2 }}</p>
+                </div>
+                <div class="field-two field">
+                    <p class="field-title">Source of Wealth</p>
+                    <p>{{ current.13 }}</p>
+                </div>
+            </div>
+            <div class="personal-box-two box">
+                <div class="field-three field">
+                    <p class="field-title">Citizenship</p>
+                    <p>{{ current.4 }}</p>
+                </div>
+                <div class="field-four field">
+                    <p class="field-title">Country of Residence</p>
+                    <p>{{ current.12 }}</p>
+                </div>
+            </div>
+            <div class="personal-box-three box">
+                <div class="field-five field">
+                    <p class="field-title">Age</p>
+                    <p>{{ current.9 }}</p>
+                </div>
+                <div class="field-six field">
+                    <p class="field-title">Birthdate</p>
+                    <p>{{ current.10 }}</p>
+                </div>
+            </div>
+        </div>
     </section>
 </div>
 {% endblock %}

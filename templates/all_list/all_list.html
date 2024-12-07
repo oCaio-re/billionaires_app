@@ -12,7 +12,7 @@
             {% for row in all_rank %}
             <div class="row-wrap">
                 <div class="row-position">#{{ row.0 }}</div>
-                <div class="row-name">{{ row.1 }}</div>
+                <a class="row-name" href="/subject/{{ row.1 }}">{{ row.1 }}</a>
                 <div class="row-wealth">${{ row.2 }} </div>
                 <div class="row-country">{{ row.3 }}</div>
                 <div class="row-company">{{ row.4 }}</div>
