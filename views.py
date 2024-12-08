@@ -78,7 +78,7 @@ def get_top10_by_age(input):
     conn = sqlite3.connect('DB/Billionaires.db')
     # using prepared statement to avoid sql injection: https://en.wikipedia.org/wiki/SQL_injection#Root_causes
     top10_age = conn.execute(
-       f" SELECT b.POSITION, b.FULL_NAME, b.WEALTH / 1000, c.NAME, b.SOURCE, i.industry "
+       f" SELECT b.POSITION, b.FULL_NAME, b.WEALTH / 1000, c.NAME, b.SOURCE, i.industry, b.AGE "
        f" FROM BILLIONAIRES b JOIN COUNTRIES c JOIN INDUSTRIES i "
        f" ON b.ID_CITIZENSHIP = c.ID AND b.id_industry = i.ID "
        f" WHERE b.AGE = {int(input)} "
@@ -107,6 +107,39 @@ def get_all_list():
     conn.close()
     return render_template('all_list/all_list.html', all_rank=all_rank)
 
+@app.route('/all-list/q1/<input>')  # list all by asc age
+def get_all_list_age(input):
+    conn = sqlite3.connect('DB/Billionaires.db')
+    # using prepared statement to avoid sql injection: https://en.wikipedia.org/wiki/SQL_injection#Root_causes
+    all_rank_age = conn.execute(
+        f" SELECT b.POSITION, b.FULL_NAME, b.WEALTH, c.NAME, b.SOURCE, b.AGE "
+        f" FROM BILLIONAIRES b JOIN COUNTRIES c "
+        f" ON b.ID_CITIZENSHIP = c.ID "
+        f" ORDER BY b.AGE {input} ;"
+        , ).fetchall()
+    conn.commit()
+    conn.close()
+    return render_template('all_list/all_list_asc_age.html', all_rank_age=all_rank_age, input=input)
+
+@app.route('/all-list/q3/<input>')  # get top ty BY COUNTRY
+def get_all_list_wealth(input):
+    conn = sqlite3.connect('DB/Billionaires.db')
+    min_wealth = int(input)
+    # using prepared statement to avoid sql injection: https://en.wikipedia.org/wiki/SQL_injection#Root_causes
+    all_rank_wealth = conn.execute(
+        '''
+        SELECT b.POSITION, b.FULL_NAME, b.WEALTH, c.NAME, b.SOURCE 
+        FROM BILLIONAIRES b JOIN COUNTRIES c
+        ON b.ID_CITIZENSHIP = c.ID
+        WHERE b.WEALTH / 1000 > ?
+        ORDER BY b.WEALTH ASC 
+        ;
+        '''
+        , (min_wealth, )).fetchall()
+    conn.commit()
+    conn.close()
+    return render_template('all_list/all_list_wealth.html', all_rank_wealth=all_rank_wealth, input=input)
+
 
 @app.route('/countries')
 def get_countries():
@@ -122,7 +155,8 @@ def get_countries():
         '''
         SELECT c.NAME, c.CONTINENT, c.TAX_RATE, c.POPULATION, c.LIFE_EXPECTANCY, c.GDP, b.POSITION, b.FULL_NAME, b.WEALTH
         FROM COUNTRIES c JOIN BILLIONAIRES b
-        ON c.ID = b.ID_CITIZENSHIP 
+        ON c.ID = b.ID_CITIZENSHIP
+        GROUP BY c.NAME
         ''').fetchall()
     conn.commit()
     conn.close()
@@ -156,6 +190,48 @@ def get_subject(subject):
     return render_template('subject/subject.html', current=current, previous=prev, next=next)
 
 
-@app.route('/all_list')
+@app.route('/industries')
 def all_list():
-    return 'CAUA'
+    conn = sqlite3.connect('DB/Billionaires.db')
+    industries_list = conn.execute(
+        '''
+        SELECT * 
+        FROM INDUSTRIES 
+        ORDER BY ID ;
+        '''
+        , ).fetchall()
+    conn.commit()
+    conn.close()
+    return render_template('industries/industries.html', industries_list=industries_list)
+
+@app.route('/industries/q1/<input>')
+def all_list_specific_bil(input):
+    conn = sqlite3.connect('DB/Billionaires.db')
+    bil_per_ind = conn.execute(
+        '''
+        SELECT b.POSITION, b.FULL_NAME, b.WEALTH,  b.SOURCE, i.industry
+        FROM BILLIONAIRES b JOIN INDUSTRIES i
+        ON b.id_industry = i.ID
+        WHERE i.industry LIKE CONCAT('%', ? , '%')
+        ORDER BY b.WEALTH DESC;
+        '''
+        , (input, )).fetchall()
+    conn.commit()
+    conn.close()
+    return render_template('industries/industries_specific_bil.html', bil_per_ind=bil_per_ind)
+
+# @app.route('/industries/q1/<input>')
+# def all_list_specific_bil(input):
+#     conn = sqlite3.connect('DB/Billionaires.db')
+#     bil_per_ind = conn.execute(
+#         '''
+#         SELECT b.POSITION, b.FULL_NAME, b.WEALTH,  b.SOURCE, i.industry
+#         FROM BILLIONAIRES b JOIN INDUSTRIES i
+#         ON b.id_industry = i.ID
+#         WHERE i.industry LIKE CONCAT('%', ? , '%')
+#         ORDER BY b.WEALTH DESC;
+#         '''
+#         , (input, )).fetchall()
+#     conn.commit()
+#     conn.close()
+#     return render_template('industries/industries_specific_bil.html', bil_per_ind=bil_per_ind)

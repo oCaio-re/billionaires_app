@@ -3,28 +3,28 @@
 <div class="section-one-left" style="height: 40em; width: 65%; margin: 2em auto;">
     <div class="content-wrap">
         <div style="text-align: center; font-weight: bold; font-size: 3.5em; font-family: 'Nova Flat', sans-serif; margin-bottom: 1em">
-            Make YOUR top 10!
+            Get it sorted:
         </div>
         <div class="forms-wrap">
             <div class="forms-left">
-                <form class="country-form" name="coutryQuery"
-                      action="javascript:window.open('/top10/country/'+document.forms['coutryQuery'].elements['expr'].value,'_self')">
-                    <p class="input-flag">By Country:</p>
+                <form class="country-form" name="ageQuery"
+                      action="javascript:window.open('/all-list/q1/'+document.forms['ageQuery'].elements['expr'].value,'_self')">
+                    <p class="input-flag" style="font-size: 1.5em">By Age:</p>
+                    <input class="country-input input" type="text" name="expr" id="expr" placeholder="ASC, DESC"
+                           required/>
+                    <input class="submit-button" type="submit" value="Get it"/>
+                </form>
+                <form class="country-form" name="ageQuery"
+                      action="javascript:window.open('/all-list/q1/'+document.forms['ageQuery'].elements['expr'].value,'_self')">
+                    <p class="input-flag" style="font-size: 1.2em">last name:</p>
                     <input class="country-input input" type="text" name="expr" id="expr" placeholder="portugal"
                            required/>
                     <input class="submit-button" type="submit" value="Get it"/>
                 </form>
-                <form class="country-form" name="coutryQuery"
-                      action="javascript:window.open('/top10/country/'+document.forms['coutryQuery'].elements['expr'].value,'_self')">
-                    <p class="input-flag">By Country:</p>
-                    <input class="country-input input" type="text" name="expr" id="expr" placeholder="portugal"
-                           required/>
-                    <input class="submit-button" type="submit" value="Get it"/>
-                </form>
-                <form class="country-form" name="coutryQuery"
-                      action="javascript:window.open('/top10/country/'+document.forms['coutryQuery'].elements['expr'].value,'_self')">
-                    <p class="input-flag">By Country:</p>
-                    <input class="country-input input" type="text" name="expr" id="expr" placeholder="portugal"
+                <form class="country-form" name="wealthQuery"
+                      action="javascript:window.open('/all-list/q3/'+document.forms['wealthQuery'].elements['expr'].value,'_self')">
+                    <p class="input-flag" style="font-size: 1.2em">By Wealth:</p>
+                    <input class="country-input input" type="text" name="expr" id="expr" placeholder="100"
                            required/>
                     <input class="submit-button" type="submit" value="Get it"/>
                 </form>
@@ -32,20 +32,17 @@
             <div class="forms-right">
                 <div class="right-row">
                     <p>
-                        Type a <b>billionaire’s name</b> and discover how great his wealth is comparing with an
-                        average
-                        citizen of his country.
+                        Type a ordering direction like <b>ASC or DESC</b> and see the <b>all rank sorted</b> by it.
                     </p>
                 </div>
                 <div class="right-row">
                     <p>
-                        Now, type a <b>country name</b> and see how many billionaires were born there.
+                        Now, type a <b>last name</b> and see how many billionaires are called like this.
                     </p>
                 </div>
                 <div class="right-row">
                     <p>
-                        Input a <b>billionaire’s name</b> and see <b>how many years</b> they <b>have left</b> to
-                        try and reach the top of the list! (on average :D) :X
+                        Input a <b>value in billions </b>and see the billionaires that <b>own at least</b> this much money.
                     </p>
                 </div>
             </div>
@@ -63,7 +60,7 @@
         <div class="table-wrap-two">
             {% for row in all_rank %}
             <div class="row-wrap">
-                <div class="row-position">#{{ row.0 }}</div>
+                <div class="row-position" style="color: #f1592a">#{{ row.0 }}</div>
                 <a class="row-name" href="/subject/{{ row.1 }}">{{ row.1 }}</a>
                 <div class="row-wealth">${{ row.2 }} </div>
                 <div class="row-country">{{ row.3 }}</div>
