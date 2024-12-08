@@ -1,8 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
-
-<div style="margin: 2em auto 2em auto; justify-content: center; width: 30%;">
-<h1 style="color: #616161 ;width: 100%; text-align: center; font-size: 4em; font-family: Roboto, sans-serif">Top 10 by Country: {{ input }}</h1>
+ <div style="margin: 2em auto 2em auto; justify-content: center; width: 30%;">
+    <h1 style="color: #616161 ;width: 100%; text-align: center; font-size: 4em; font-family: Roboto, sans-serif">Top 10 by age: {{ input }}</h1>
 </div>
 <div class="section-two-wrap" >
     <div class="content-wrap-two" >
@@ -13,10 +12,10 @@
             <p style="font-size: 0.8em">Source</p>
         </div>
         <div class="table-wrap-two">
-            {% for row in top10_countries %}
+            {% for row in top10_age %}
             <div class="row-wrap">
                 <div class="row-position" style="color: #f1592a">#{{ row.0 }}</div>
-                <a class="row-name" href="/subject/{{ row.1 }}" style="text-decoration: none">{{ row.1 }}</a>
+                <a class="row-name" href="/subject/{{ row.1 }}" style="text-decoration: none">{{ row.1 }}, (Age: {{ row.5 }})</a>
                 <div class="row-wealth">{{ row.2 }} </div>
                 <div class="row-country">{{ row.3 }}</div>
                 <div class="row-company">{{ row.4 }}</div>
@@ -25,4 +24,5 @@
         </div>
     </div>
 </div>
+
 {% endblock %}

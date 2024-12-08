@@ -1,5 +1,57 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="section-one-left" style="height: 40em; width: 65%; margin: 2em auto;">
+    <div class="content-wrap">
+        <div style="text-align: center; font-weight: bold; font-size: 3.5em; font-family: 'Nova Flat', sans-serif; margin-bottom: 1em">
+            Make YOUR top 10!
+        </div>
+        <div class="forms-wrap">
+            <div class="forms-left">
+                <form class="country-form" name="coutryQuery"
+                      action="javascript:window.open('/top10/country/'+document.forms['coutryQuery'].elements['expr'].value,'_self')">
+                    <p class="input-flag">By Country:</p>
+                    <input class="country-input input" type="text" name="expr" id="expr" placeholder="portugal"
+                           required/>
+                    <input class="submit-button" type="submit" value="Get it"/>
+                </form>
+                <form class="country-form" name="coutryQuery"
+                      action="javascript:window.open('/top10/country/'+document.forms['coutryQuery'].elements['expr'].value,'_self')">
+                    <p class="input-flag">By Country:</p>
+                    <input class="country-input input" type="text" name="expr" id="expr" placeholder="portugal"
+                           required/>
+                    <input class="submit-button" type="submit" value="Get it"/>
+                </form>
+                <form class="country-form" name="coutryQuery"
+                      action="javascript:window.open('/top10/country/'+document.forms['coutryQuery'].elements['expr'].value,'_self')">
+                    <p class="input-flag">By Country:</p>
+                    <input class="country-input input" type="text" name="expr" id="expr" placeholder="portugal"
+                           required/>
+                    <input class="submit-button" type="submit" value="Get it"/>
+                </form>
+            </div>
+            <div class="forms-right">
+                <div class="right-row">
+                    <p>
+                        Type a <b>billionaire’s name</b> and discover how great his wealth is comparing with an
+                        average
+                        citizen of his country.
+                    </p>
+                </div>
+                <div class="right-row">
+                    <p>
+                        Now, type a <b>country name</b> and see how many billionaires were born there.
+                    </p>
+                </div>
+                <div class="right-row">
+                    <p>
+                        Input a <b>billionaire’s name</b> and see <b>how many years</b> they <b>have left</b> to
+                        try and reach the top of the list! (on average :D) :X
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="section-two-wrap" style="height: auto">
     <div class="content-wrap-two" >
         <div class="title-wrap-two"><p class="title-table">

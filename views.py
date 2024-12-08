@@ -40,24 +40,55 @@ def top10():
     return render_template('top10/top10.html', top10=top10)
 
 
-@app.route('/top10/country/<country>')  # get top ty BY COUNTRY
-def get_top10_by_country(country):
+@app.route('/top10/q1/<input>')  # get top ty BY COUNTRY
+def get_top10_by_country(input):
     conn = sqlite3.connect('DB/Billionaires.db')
     # using prepared statement to avoid sql injection: https://en.wikipedia.org/wiki/SQL_injection#Root_causes
-    top10 = conn.execute(
-        '''
-        SELECT b.POSITION, b.FULL_NAME, b.WEALTH / 1000, c.NAME, b.SOURCE 
-        FROM BILLIONAIRES b JOIN COUNTRIES c
-        ON b.ID_CITIZENSHIP = c.ID 
-        WHERE c.NAME = ? COLLATE NOCASE 
-        ORDER BY WEALTH DESC 
-        LIMIT 10;
-        '''
-        , (country,)).fetchall()
+    top10_countries = conn.execute(
+        f" SELECT b.POSITION, b.FULL_NAME, b.WEALTH / 1000, c.NAME, b.SOURCE " 
+        f" FROM BILLIONAIRES b JOIN COUNTRIES c "
+        f" ON b.ID_CITIZENSHIP = c.ID " 
+        f" WHERE c.NAME like '%{input}%' "
+        f" ORDER BY WEALTH DESC  "
+        f" LIMIT 10;" ).fetchall()
     conn.commit()
     conn.close()
-    return render_template('top10/top10-queries.html', top10=top10, country=country)
+    return render_template('top10/top10-queries.html', top10_countries=top10_countries, input=input)
 
+@app.route('/top10/q2/<input>')
+def get_top10_by_industry(input):
+    conn = sqlite3.connect('DB/Billionaires.db')
+    # using prepared statement to avoid sql injection: https://en.wikipedia.org/wiki/SQL_injection#Root_causes
+    top10_industries = conn.execute(
+       f" SELECT b.POSITION, b.FULL_NAME, b.WEALTH / 1000, c.NAME, b.SOURCE, i.industry "
+       f" FROM BILLIONAIRES b JOIN COUNTRIES c JOIN INDUSTRIES i "
+       f" ON b.ID_CITIZENSHIP = c.ID AND b.id_industry = i.ID "
+       f" WHERE i.industry LIKE '%{input}%' "
+       f" ORDER BY WEALTH DESC "
+       f" LIMIT 10; "
+            ).fetchall()
+
+    conn.commit()
+    conn.close()
+    return render_template('top10/top10-industry.html', top10_industries=top10_industries, input=input)
+
+
+@app.route('/top10/q3/<input>')
+def get_top10_by_age(input):
+    conn = sqlite3.connect('DB/Billionaires.db')
+    # using prepared statement to avoid sql injection: https://en.wikipedia.org/wiki/SQL_injection#Root_causes
+    top10_age = conn.execute(
+       f" SELECT b.POSITION, b.FULL_NAME, b.WEALTH / 1000, c.NAME, b.SOURCE, i.industry "
+       f" FROM BILLIONAIRES b JOIN COUNTRIES c JOIN INDUSTRIES i "
+       f" ON b.ID_CITIZENSHIP = c.ID AND b.id_industry = i.ID "
+       f" WHERE b.AGE = {int(input)} "
+       f" ORDER BY WEALTH DESC "
+       f" LIMIT 10; "
+            ).fetchall()
+
+    conn.commit()
+    conn.close()
+    return render_template('top10/top10-age.html', top10_age=top10_age, input=input)
 
 @app.route('/all-list')  # get top ty BY COUNTRY
 def get_all_list():
@@ -87,9 +118,15 @@ def get_countries():
         FROM COUNTRIES
         ;
         ''').fetchall()
+    countr_and_bill = conn.execute(
+        '''
+        SELECT c.NAME, c.CONTINENT, c.TAX_RATE, c.POPULATION, c.LIFE_EXPECTANCY, c.GDP, b.POSITION, b.FULL_NAME, b.WEALTH
+        FROM COUNTRIES c JOIN BILLIONAIRES b
+        ON c.ID = b.ID_CITIZENSHIP 
+        ''').fetchall()
     conn.commit()
     conn.close()
-    return render_template('countries/countries.html', countries=countries)
+    return render_template('countries/countries.html', countries=countries, countr_and_bill=countr_and_bill)
 
 
 @app.route('/subject/<subject>')

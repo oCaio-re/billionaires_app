@@ -7,35 +7,71 @@
         <img class="countries-img" src="../../static/images/loved-hated-billionaires.png" alt="loved-hated-billionaires"/>
     </div>
 
-    <section class="countries-section-two">
-        <div class="countries-section-two-wrap">
-            <div class="title-wrap-countries">
-                <p style="text-align: center">Billionaires and Countries, what do they have in common?</p>
+    <div class="section-one-left" style="height: 40em; width: 65%; margin: 2em auto;">
+    <div class="content-wrap">
+        <div style="text-align: center; font-weight: bold; font-size: 3.5em; font-family: 'Nova Flat', sans-serif; margin-bottom: 1em">
+            Make YOUR top 10!
+        </div>
+        <div class="forms-wrap">
+            <div class="forms-left">
+                <form class="country-form" name="coutryQuery"
+                      action="javascript:window.open('/top10/country/'+document.forms['coutryQuery'].elements['expr'].value,'_self')">
+                    <p class="input-flag">By Country:</p>
+                    <input class="country-input input" type="text" name="expr" id="expr" placeholder="portugal"
+                           required/>
+                    <input class="submit-button" type="submit" value="Get it"/>
+                </form>
+                <form class="country-form" name="coutryQuery"
+                      action="javascript:window.open('/top10/country/'+document.forms['coutryQuery'].elements['expr'].value,'_self')">
+                    <p class="input-flag">By Country:</p>
+                    <input class="country-input input" type="text" name="expr" id="expr" placeholder="portugal"
+                           required/>
+                    <input class="submit-button" type="submit" value="Get it"/>
+                </form>
+                <form class="country-form" name="coutryQuery"
+                      action="javascript:window.open('/top10/country/'+document.forms['coutryQuery'].elements['expr'].value,'_self')">
+                    <p class="input-flag">By Country:</p>
+                    <input class="country-input input" type="text" name="expr" id="expr" placeholder="portugal"
+                           required/>
+                    <input class="submit-button" type="submit" value="Get it"/>
+                </form>
             </div>
-            <div class="forms-wrap">
-                <div class="forms-left">
-
+            <div class="forms-right">
+                <div class="right-row">
+                    <p>
+                        Type a <b>billionaire’s name</b> and discover how great his wealth is comparing with an
+                        average
+                        citizen of his country.
+                    </p>
                 </div>
-                <div class="forms-right">
-                    <div class="right-row">
-                        <p>
-                            Type a <b>billionaire’s name</b> and discover how great his wealth is comparing with an average
-                            citizen of his country.
-                        </p>
-                    </div>
-                    <div class="right-row">
-                        <p>
-                            Now, type a <b>country name</b> and see how many billionaires were born there.
-                        </p>
-                    </div>
-                    <div class="right-row">
-                        <p>
-                            Input a <b>billionaire’s name</b> and see <b>how many years</b> they <b>have left</b> to try and reach the top of the list! (on average :D)   :X
-                        </p>
-                    </div>
+                <div class="right-row">
+                    <p>
+                        Now, type a <b>country name</b> and see how many billionaires were born there.
+                    </p>
+                </div>
+                <div class="right-row">
+                    <p>
+                        Input a <b>billionaire’s name</b> and see <b>how many years</b> they <b>have left</b> to
+                        try and reach the top of the list! (on average :D) :X
+                    </p>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</div>
+
+<div>
+    <div><p></p></div>
+    <div><p>Country</p><p>Count</p><p>Net Worth</p><p>Richest</p></div>
+    {% for row in countr_and_bill %}
+        <div style="display: flex;">
+            <div class="country-name">{{ row.0 }}</div>
+            <div class="country-count">{{ row.1 }}</div>
+            <div class="country-net-worth">{{ row.5 }}</div>
+            <div class="country-richest">#{{ row.6 }} {{ row.7 }}(${{ row.8 }}B)</div>
+        </div>
+    {% endfor %}
+{#    c.NAME, c.CONTINENT, c.TAX_RATE, c.POPULATION, c.LIFE_EXPECTANCY, c.GDP, b.POSITION, b.FULL_NAME, b.WEALTH#}
+</div>
 
 {% endblock %}

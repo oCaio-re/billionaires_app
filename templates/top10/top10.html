@@ -7,7 +7,7 @@
         </p>
     </div>
     <div class="header-desc" style="text-align: center; font-family: 'Roboto Thin', sans-serif; font-style: italic;
-        font-size: 2em; color: rgb(99,99,99);">
+    font-size: 2em; color: rgb(99,99,99);">
         <br/>
         <p class="quote-one">"Money is power and power is money" - Unknown</p>
         <p class="quote-two">"It takes money to make money" - J.P Morgan</p>
@@ -16,18 +16,28 @@
 
 <div class="photo-grid-wrap">
     <div class="row-wrap row-one-wrap">
-        <div class="photo-wrap"><img class="photo" src="../../static/images/top10/bernard-arnault.jpg" alt="billionaire pic"/></div>
-        <div class="photo-wrap"><img class="photo" src="../../static/images/top10/elon-musk.webp" alt="billionaire pic"/></div>
-        <div class="photo-wrap"><img class="photo" src="../../static/images/top10/jeff-bezos.jpg" alt="billionaire pic"/></div>
-        <div class="photo-wrap"><img class="photo" src="../../static/images/top10/larry_ellison.webp" alt="billionaire pic"/></div>
-        <div class="photo-wrap"><img class="photo" src="../../static/images/top10/warren-buffet.jpg" alt="billionaire pic"/></div>
+        <div class="photo-wrap"><img class="photo" src="../../static/images/top10/bernard-arnault.jpg"
+                                     alt="billionaire pic"/></div>
+        <div class="photo-wrap"><img class="photo" src="../../static/images/top10/elon-musk.webp"
+                                     alt="billionaire pic"/></div>
+        <div class="photo-wrap"><img class="photo" src="../../static/images/top10/jeff-bezos.jpg"
+                                     alt="billionaire pic"/></div>
+        <div class="photo-wrap"><img class="photo" src="../../static/images/top10/larry_ellison.webp"
+                                     alt="billionaire pic"/></div>
+        <div class="photo-wrap"><img class="photo" src="../../static/images/top10/warren-buffet.jpg"
+                                     alt="billionaire pic"/></div>
     </div>
     <div class="row-wrap row-two-wrap">
-        <div class="photo-wrap"><img class="photo" src="../../static/images/top10/bill-gates.jpg" alt="billionaire pic"/></div>
-        <div class="photo-wrap"><img class="photo" src="../../static/images/top10/michael-bloomerang.jpg" alt="billionaire pic"/></div>
-        <div class="photo-wrap"><img class="photo" src="../../static/images/top10/carlos-slim.jpg" alt="billionaire pic"/></div>
-        <div class="photo-wrap"><img class="photo" src="../../static/images/top10/mukesh-ambani.jpeg" alt="billionaire pic"/></div>
-        <div class="photo-wrap"><img class="photo" src="../../static/images/top10/steve-balmer.webp" alt="billionaire pic"/></div>
+        <div class="photo-wrap"><img class="photo" src="../../static/images/top10/bill-gates.jpg"
+                                     alt="billionaire pic"/></div>
+        <div class="photo-wrap"><img class="photo" src="../../static/images/top10/michael-bloomerang.jpg"
+                                     alt="billionaire pic"/></div>
+        <div class="photo-wrap"><img class="photo" src="../../static/images/top10/carlos-slim.jpg"
+                                     alt="billionaire pic"/></div>
+        <div class="photo-wrap"><img class="photo" src="../../static/images/top10/mukesh-ambani.jpeg"
+                                     alt="billionaire pic"/></div>
+        <div class="photo-wrap"><img class="photo" src="../../static/images/top10/steve-balmer.webp"
+                                     alt="billionaire pic"/></div>
     </div>
 </div>
 
@@ -43,42 +53,71 @@
         </div>
         <div class="table-wrap-two">
             {% for row in top10 %}
-            <div class="row-wrap">
-                <div class="row-position" style="color: #f1592a">#{{ row.0 }}</div>
-                <a class="row-name" href="/subject/{{ row.1 }}" style="text-decoration: none">{{ row.1 }}</a>
-                <div class="row-wealth">${{ row.2 }} </div>
-                <div class="row-country">{{ row.3 }}</div>
-                <div class="row-company">{{ row.4 }}</div>
-                <div class="row-image">
-                    <img src="../../static/images/company-logos/{{ row.0 }}.png" class="logo-image" alt="LOGO"/>
+                <div class="row-wrap">
+                    <div class="row-position" style="color: #f1592a">#{{ row.0 }}</div>
+                    <a class="row-name" href="/subject/{{ row.1 }}" style="text-decoration: none">{{ row.1 }}</a>
+                    <div class="row-wealth">${{ row.2 }} </div>
+                    <div class="row-country">{{ row.3 }}</div>
+                    <div class="row-company">{{ row.4 }}</div>
+                    <div class="row-image">
+                        <img src="../../static/images/company-logos/{{ row.0 }}.png" class="logo-image" alt="LOGO"/>
+                    </div>
                 </div>
-            </div>
             {% endfor %}
         </div>
     </div>
 </div>
 
 <div class="section-one-wrap" style="justify-content: center; height: 45em">
-        <div class="section-one-left" style="height: 40em; width: 100%;">
-            <div class="content-wrap">
-                <div style="text-align: center; font-weight: bold; font-size: 3.5em; font-family: 'Roboto', sans-serif;">
-                    Make YOUR top 10!
+    <div class="section-one-left" style="height: 40em; width: 100%;">
+        <div class="content-wrap">
+            <div style="text-align: center; font-weight: bold; font-size: 3.5em; font-family: 'Nova Flat', sans-serif; margin-bottom: 1em">
+                Make YOUR top 10!
+            </div>
+            <div class="forms-wrap">
+                <div class="forms-left">
+                    <form class="country-form" name="coutryQuery"
+                          action="javascript:window.open('/top10/q1/'+document.forms['coutryQuery'].elements['expr'].value,'_self')">
+                        <p class="input-flag">By Country:</p>
+                        <input class="country-input input" type="text" name="expr" id="expr" placeholder="portugal"
+                               required/>
+                        <input class="submit-button" type="submit" value="Get it"/>
+                    </form>
+                    <form class="country-form" name="industryQuery"
+                          action="javascript:window.open('/top10/q2/'+document.forms['industryQuery'].elements['expr'].value,'_self')">
+                        <p class="input-flag">By Industry:</p>
+                        <input class="country-input input" type="text" name="expr" id="expr" placeholder="Retail, technology, media"
+                               required/>
+                        <input class="submit-button" type="submit" value="Get it"/>
+                    </form>
+                    <form class="country-form" name="ageQuery"
+                          action="javascript:window.open('/top10/q3/'+document.forms['ageQuery'].elements['expr'].value,'_self')">
+                        <p class="input-flag">By Age:</p>
+                        <input class="country-input input" type="text" name="expr" id="expr" placeholder="39"
+                               required/>
+                        <input class="submit-button" type="submit" value="Get it"/>
+                    </form>
                 </div>
-                <div class="form-section">
-                    <div class="form-content-wrap">
-                        <form class="country-form" name="coutryQuery" action="javascript:window.open('/top10/country/'+document.forms['coutryQuery'].elements['expr'].value,'_self')">
-                            By Country:
-                            <input class="country-input input" type="text" name="expr" id="expr" placeholder="portugal" required/>
-                            <input class="submit-button" type="submit" value="Get it"/>
-                        </form>
-                        <form class="country-form" name="coutryQuery" action="javascript:window.open('/top10/country/'+document.forms['coutryQuery'].elements['expr'].value,'_self')">
-                            By Country:
-                            <input class="country-input input" type="text" name="expr" id="expr" placeholder="portugal" required/>
-                            <input class="submit-button" type="submit" value="Get it"/>
-                        </form>
+                <div class="forms-right">
+                    <div class="right-row">
+                        <p>
+                            Type a <b>country name</b> and discover it's top 10.
+                        </p>
+                    </div>
+                    <div class="right-row">
+                        <p>
+                            Now, type an <b>industry name</b> and see it's top 10.
+                        </p>
+                    </div>
+                    <div class="right-row">
+                        <p>
+                            Input a <b>billionaire’s name</b> and see <b>how many years</b> they <b>have left</b> to
+                            try and reach the top of the list! (on average :D) :X
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 </div>
 {% endblock %}
