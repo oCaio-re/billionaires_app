@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<div style="margin: 2em auto 2em auto; justify-content: center; width: 60%;">
+    <h1 style="color: #616161 ;width: 100%; text-align: center; font-size: 4em; font-family: Roboto, sans-serif">Amount of billionaires above: {{ input }}</h1>
+</div>
+<div class="section-two-wrap" style="height: auto">
+    <div class="content-wrap-two" style="padding: 2em">
+        <div class="title-wrap-two"><p class="title-table">
+            <u>INDUSTRY</u></p>
+            <p style="font-size: 0.8em; margin-right: 2em;">Amount of billionaires</p>
+        </div>
+        <br/>
+        <div class="table-wrap-two">
+            {% for row in amount_of_bil %}
+            <div class="row-wrap" style="justify-content: left">
+                <p class="row-name" style="margin-left: 1em">{{ row.0 }}</p>
+                <div class="row-wealth" style="color: #4A9195; margin-left: 2em">{{ row.1 }} </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

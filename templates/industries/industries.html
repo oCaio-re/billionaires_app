@@ -23,16 +23,16 @@
                         <input class="submit-button" type="submit" value="Get it"/>
                     </form>
                     <form class="country-form" name="amountQuery"
-                          action="javascript:window.open('/top10/country/'+document.forms['amountQuery'].elements['expr'].value,'_self')">
+                          action="javascript:window.open('/industries/q2/'+document.forms['amountQuery'].elements['expr'].value,'_self')">
                         <p class="input-flag">Amount:</p>
                         <input class="country-input input" type="text" name="expr" id="expr" placeholder="5, 12, 40..."
                                required/>
                         <input class="submit-button" type="submit" value="Get it"/>
                     </form>
                     <form class="country-form" name="valueQuery"
-                          action="javascript:window.open('/top10/country/'+document.forms['valueQuery'].elements['expr'].value,'_self')">
+                          action="javascript:window.open('/industries/q3/'+document.forms['valueQuery'].elements['expr'].value,'_self')">
                         <p class="input-flag">Wealth:</p>
-                        <input class="country-input input" type="text" name="expr" id="expr" placeholder="15, 33, 120..."
+                        <input class="country-input input" type="text" name="expr" id="expr" placeholder="ASC, DESC"
                                required/>
                         <input class="submit-button" type="submit" value="Get it"/>
                     </form>
@@ -51,8 +51,7 @@
                     </div>
                     <div class="right-row">
                         <p>
-                            Input a <b>value in billions</b> and see <b>how much</b> this industry has summing all
-                            billionaires within it.
+                            Order the total wealth of each industry(ascending or descending) by <b>ASC or DESC</b>.
                         </p>
                     </div>
                 </div>
@@ -69,12 +68,6 @@
                     <div class="row-wrap" style="justify-content: left">
                         <div class="row-position" style="color: #f1592a; width: 6%;">#{{ row.0 }}</div>
                         <p class="row-name" style="text-decoration: none">{{ row.1 }}</p>
-                        {#                    <div class="row-wealth">${{ row.2 }} </div>#}
-                        {#                    <div class="row-country">{{ row.3 }}</div>#}
-                        {#                    <div class="row-company">{{ row.4 }}</div>#}
-                        {#                    <div class="row-image">#}
-                        {#                        <img src="../../static/images/company-logos/{{ row.0 }}.png" class="logo-image" alt="LOGO"/>#}
-                        {#                    </div>#}
                     </div>
                 {% endfor %}
             </div>
