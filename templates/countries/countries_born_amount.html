@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block content %}
+<p>{{ input }}</p>
+{% for e in q2_born_at %}
+    <p>{{ e.0 }} {{ e.3 }} {{ e.4 }} {{ e.5 }} </p>
+{% endfor %}
+{% endblock %}

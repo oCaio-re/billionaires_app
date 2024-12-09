@@ -102,11 +102,13 @@
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     height: 80em;
     width: 65%;
+    padding-top: 2em;
     font-family: Roboto, sans-serif;
 }
 
 .content-wrap-two{
     /*background-color: grey;*/
+
     width: 95%;
     height: 95%;
     margin: auto;

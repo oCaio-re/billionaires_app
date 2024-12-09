@@ -22,6 +22,31 @@ def home():  # put application's code here
     conn.close()
     return render_template('home/home.html', top10=top10)
 
+@app.route('/subject/<subject>')
+def get_subject(subject):
+    conn = sqlite3.connect('DB/Billionaires.db')
+    current = conn.execute(
+        ' SELECT b.POSITION, b.FULL_NAME, b.GENDER, b.WEALTH / 1000, c.NAME, b.SOURCE, i.INDUSTRY, b.ID, b.GENDER, b.AGE, b.BIRTHDATE, b.CITY_OF_RESIDENCE, b.COUNTRY_OF_RESIDENCE, b.SOURCE  '
+        ' FROM BILLIONAIRES b JOIN COUNTRIES c JOIN INDUSTRIES i '
+        ' ON b.ID_CITIZENSHIP = c.ID AND b.ID_INDUSTRY = i.ID '
+        ' WHERE b.FULL_NAME LIKE \'%' + subject + '%\'', ).fetchone()
+    next = conn.execute(
+        '''
+        SELECT FULL_NAME
+        FROM BILLIONAIRES 
+        WHERE ID = ?
+        ;
+        ''', (current[7] + 1 if current[7] < 2591 else None,)).fetchall()
+    prev = conn.execute(
+        '''
+        SELECT FULL_NAME
+        FROM BILLIONAIRES 
+        WHERE ID = ?
+        ;
+        ''', (current[7] - 1 if current[7] > 1 else None,)).fetchall()
+    conn.commit()
+    conn.close()
+    return render_template('subject/subject.html', current=current, previous=prev, next=next)
 
 @app.route('/top10')
 def top10():
@@ -103,7 +128,6 @@ def get_all_list():
         ON b.ID_CITIZENSHIP = c.ID
         ;
         '''
-
         , ).fetchall()
     conn.commit()
     conn.close()
@@ -148,7 +172,6 @@ def get_all_list_wealth(input):
 @app.route('/countries')
 def get_countries():
     conn = sqlite3.connect('DB/Billionaires.db')
-    cursor = conn.cursor()
     countries = conn.execute(
         '''
         SELECT NAME, CONTINENT, TAX_RATE, POPULATION, LIFE_EXPECTANCY
@@ -166,32 +189,45 @@ def get_countries():
     conn.close()
     return render_template('countries/countries.html', countries=countries, countr_and_bill=countr_and_bill)
 
-
-@app.route('/subject/<subject>')
-def get_subject(subject):
+@app.route('/countries/q1/<input>')
+def get_how_great(input):
     conn = sqlite3.connect('DB/Billionaires.db')
-    current = conn.execute(
-        ' SELECT b.POSITION, b.FULL_NAME, b.GENDER, b.WEALTH / 1000, c.NAME, b.SOURCE, i.INDUSTRY, b.ID, b.GENDER, b.AGE, b.BIRTHDATE, b.CITY_OF_RESIDENCE, b.COUNTRY_OF_RESIDENCE, b.SOURCE  '
-        ' FROM BILLIONAIRES b JOIN COUNTRIES c JOIN INDUSTRIES i '
-        ' ON b.ID_CITIZENSHIP = c.ID AND b.ID_INDUSTRY = i.ID '
-        ' WHERE b.FULL_NAME LIKE \'%' + subject + '%\'', ).fetchone()
-    next = conn.execute(
+    # todo REPLACE QUERY!
+    q1_how_great = conn.execute(
+        ''' 
+        SELECT * FROM BILLIONAIRES
         '''
-        SELECT FULL_NAME
-        FROM BILLIONAIRES 
-        WHERE ID = ?
-        ;
-        ''', (current[7] + 1 if current[7] < 2591 else None,)).fetchall()
-    prev = conn.execute(
-        '''
-        SELECT FULL_NAME
-        FROM BILLIONAIRES 
-        WHERE ID = ?
-        ;
-        ''', (current[7] - 1 if current[7] > 1 else None,)).fetchall()
+    )
     conn.commit()
-    conn.close()
-    return render_template('subject/subject.html', current=current, previous=prev, next=next)
+    # conn.close()
+    return render_template('countries/countries_wealth.html', q1_how_great=q1_how_great, input=input)
+
+@app.route('/countries/q2/<input>')
+def get_years_left(input):
+    conn = sqlite3.connect('DB/Billionaires.db')
+    # todo REPLACE QUERY!
+    q2_born_at = conn.execute(
+        ''' 
+        SELECT * FROM BILLIONAIRES 
+        '''
+    )
+    conn.commit()
+    # conn.close()
+    return render_template('countries/countries_born_amount.html', input=input, q2_born_at=q2_born_at)
+
+@app.route('/countries/q3/<input>')
+def get_born_at(input):
+    conn = sqlite3.connect('DB/Billionaires.db')
+    # todo REPLACE QUERY!
+    q3_years_left = conn.execute(
+        ''' 
+        SELECT * FROM BILLIONAIRES
+        '''
+    )
+    conn.commit()
+    # conn.close()
+    return render_template('countries/countries_years_left.html', input=input, q3_years_left=q3_years_left)
+
 
 
 @app.route('/industries')

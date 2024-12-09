@@ -7,18 +7,14 @@
             <div class="industry-wrap"><i class="bi bi-cash" style="margin: 0 10px 0 8px; font-size: 1.6em"></i><p>{{ current.6 }}</p></div>
             <div class="country-wrap"><i class="bi bi-geo-alt" style="margin-right: 10px; font-size: 1.6em"></i><p>{{ current.4 }}</p></div>
             {% if current.7 > 1 %}
-{#            <div class="previous-wrap">#}
             <a href="/subject/{{ previous.0.0 }}" class="previous-wrap">
                 <i class="bi bi-arrow-left-short" style="font-size: 2em;"></i><p>{{ previous.0.0 }}</p>
             </a>
-{#            </div>#}
             {% endif %}
             {% if current.7 < 2591 %}
-{#            <div class="next-wrap">#}
                 <a href="/subject/{{ next.0.0 }}" class="next-wrap">
                  <p>{{ next.0.0 }}</p><i class="bi bi-arrow-right-short" style="font-size: 2em;"></i>
                 </a>
-{#            </div>#}
             {% endif %}
         </div>
     </section>
