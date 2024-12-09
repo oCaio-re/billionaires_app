@@ -1,7 +1,42 @@
 {% extends 'base.html' %}
 {% block content %}
-<p>{{ input }}</p>
-{% for e in q2_born_at %}
-    <p>{{ e.0 }} {{ e.3 }} {{ e.4 }} {{ e.5 }} </p>
-{% endfor %}
+<div style="margin: 2em auto; text-align: center;">
+    <h1 style="font-family: 'Roboto', sans-serif; font-size: 2.5em; color: #333;">THE WORLD'S RICHEST</h1>
+</div>
+<div class="section-two-wrap" style="height: auto;">
+    <div class="content-wrap-two">
+        <div class="title-wrap-two" style="display: flex; justify-content: space-between; font-weight: bold; border-bottom: 2px solid #000; padding-bottom: 0.5em;">
+            <div style="width: 10%; text-align: left;">Position</div>
+            <div style="width: 40%; text-align: left;">Name</div>
+            <div style="width: 20%; text-align: right;">Wealth (in billions)</div>
+            <div style="width: 10%; text-align: center;">Age</div>
+            <div style="width: 20%; text-align: left;">Source</div>
+        </div>
+        <div class="table-wrap-two">
+            {% if q2_born_at %}
+                {% for row in q2_born_at %}
+                    <div class="row-wrap" style="display: flex; justify-content: space-between; padding: 1em; border-bottom: 1px solid #e0e0e0;">
+                        <div style="width: 10%; text-align: left; color: #f1592a; font-weight: bold;">#{{ row[0] }}</div>
+                        <div style="width: 40%; text-align: left; font-size: 1.2em; color: #6a1b9a; font-family: 'Roboto', sans-serif;">
+                            {{ row[1] }}
+                        </div>
+                        <div style="width: 20%; text-align: center; font-size: 1.2em; color: #388e3c;">
+                            {{ row[2] }}
+                        </div>
+                        <div style="width: 10%; text-align: center; font-size: 1em; color: #000;">
+                            {{ row[4] }}
+                        </div>
+                        <div style="width: 20%; text-align: left; font-size: 1em; color: #00796b; font-style: italic;">
+                            {{ row[3] }}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p style="text-align: center; font-size: 1.2em; color: #888;">
+                    No billionaires found born in {{ input }}.
+                </p>
+            {% endif %}
+        </div>
+    </div>
+</div>
 {% endblock %}
