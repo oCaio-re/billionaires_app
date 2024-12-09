@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<div style="margin: 2em auto; text-align: center; width: 80%; background: #f9f9f9; padding: 2em; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+    <h1 style="font-family: 'Roboto', sans-serif; font-size: 2.5em; color: #333;">
+        No Data Found for <span style="color: #f1592a;">{{ input | capitalize }}</span>
+    </h1>
+    <p style="font-size: 1.2em; color: #555; margin-top: 1em;">
+        Unfortunately, we couldn't find any information about billionaires born in <strong>{{ input | capitalize }}</strong>.
+    </p>
+    <p style="font-size: 1em; color: #777; margin-top: 1em;">
+        Please try searching for another country or check back later.
+    </p>
+</div>
+{% endblock %}

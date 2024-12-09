@@ -1,7 +1,46 @@
 {% extends 'base.html' %}
 {% block content %}
-<p>{{ input }}</p>
-{% for e in q3_years_left %}
-    <p>{{ e.0 }} {{ e.3 }} {{ e.4 }} {{ e.5 }} </p>
-{% endfor %}
+<div style="margin: 2em auto; text-align: center;">
+    <h1 style="font-family: 'Roboto', sans-serif; font-size: 2.5em; color: #333;">
+        Years Left for <span style="color: #6a1b9a;">{{ input }}</span>
+    </h1>
+</div>
+<div class="section-two-wrap" style="margin: 2em auto; width: 80%; background: #f9f9f9; padding: 1.5em; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+    <div class="content-wrap-two">
+        <div class="title-wrap-two" style="display: flex; justify-content: space-between; font-weight: bold; border-bottom: 2px solid #000; padding-bottom: 0.5em;">
+            <div style="width: 25%; text-align: left;">Name</div>
+            <div style="width: 15%; text-align: right;">Wealth (in billions)</div>
+            <div style="width: 15%; text-align: center;">Age</div>
+            <div style="width: 15%; text-align: left;">Years Left</div>
+            <div style="width: 25%; text-align: left;">Source</div>
+        </div>
+        <div class="table-wrap-two">
+            {% if q3_years_left %}
+                {% for row in q3_years_left %}
+                    <div class="row-wrap" style="display: flex; justify-content: space-between; padding: 1em 1.5em; border-bottom: 1px solid #e0e0e0;">
+                        <div style="width: 25%; text-align: left; font-size: 1.2em; color: #6a1b9a; font-family: 'Roboto', sans-serif;">
+                            {{ row[0] }}
+                        </div>
+                        <div style="width: 15%; text-align: center; font-size: 1.2em; color: #388e3c;">
+                            {{ "%.1f" | format(row[3]) }}
+                        </div>
+                        <div style="width: 15%; text-align: center; font-size: 1.2em; color: #000;">
+                            {{ row[1] }}
+                        </div>
+                        <div style="width: 15%; text-align: center; font-size: 1.2em; color: #f1592a;">
+                            {{ row[2] }}
+                        </div>
+                        <div style="width: 25%; text-align: left; font-size: 1em; color: #00796b; font-style: italic; padding-left: 1em;">
+                            {{ row[4] }}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p style="text-align: center; font-size: 1.2em; color: #888;">
+                    No data found for {{ input }}.
+                </p>
+            {% endif %}
+        </div>
+    </div>
+</div>
 {% endblock %}

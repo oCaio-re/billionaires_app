@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<div style="margin: 2em auto; width: 80%; border: 1px solid #ddd; border-radius: 12px; padding: 2em; background-color: #f9f9f9;">
+    <h1 style="color: #616161; font-family: Roboto, sans-serif; font-size: 2em; text-align: left; margin-bottom: 1.5em;">
+        <u>Details</u>
+    </h1>
+    {% for row in all_rank_last_name %}
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1em; padding: 1em; border-bottom: 1px solid #ddd;">
+        <!-- Nome -->
+        <div style="font-size: 1.8em; color: purple; font-weight: bold;">
+            {{ row[0] }}
+        </div>
+        <!-- Idade -->
+        <div style="text-align: center;">
+            <div style="font-size: 1em; font-weight: bold;">Age</div>
+            <div>{{ row[1] }}</div>
+        </div>
+        <!-- Riqueza -->
+        <div style="text-align: center;">
+            <div style="font-size: 1em; font-weight: bold;">Wealth (in billions)</div>
+            <div style="color: green;">${{ row[2] }} billion</div>
+        </div>
+        <!-- País -->
+        <div style="text-align: center;">
+            <div style="font-size: 1em; font-weight: bold;">Country</div>
+            <div style="color: blue;">{{ row[3] }}</div>
+        </div>
+        <!-- Marca -->
+        <div style="text-align: center;">
+            <div style="font-size: 1em; font-weight: bold;">Brand</div>
+            <div style="color: teal;">{{ row[4] }}</div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

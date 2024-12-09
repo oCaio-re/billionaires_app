@@ -1,14 +1,25 @@
 import sqlite3
 
-from flask import Flask
-from flask import render_template
+from flask import Flask,render_template, request
 from app import app
 import db
 
+def sqlite_security(conn):
+    #? Disable untruted schema modifications
+    conn.execute("PRAGMA trusted_schema = OFF;")
+    #? More integrity checks
+    conn.execute("PRAGMA cell_size_check = ON;")
+    #? Enforce referential integrity
+    conn.execute("PRAGMA foreign_keys = ON;")
+
+def get_db():
+    conn = sqlite3.connect('DB/Billionaires.db')
+    sqlite_security(conn)
+    return conn
 
 @app.route('/')
 def home():  # put application's code here
-    conn = sqlite3.connect('DB/Billionaires.db')
+    conn = get_db()
     cursor = conn.cursor()
     top10 = conn.execute(
         '''
@@ -24,7 +35,7 @@ def home():  # put application's code here
 
 @app.route('/subject/<subject>')
 def get_subject(subject):
-    conn = sqlite3.connect('DB/Billionaires.db')
+    conn = get_db()
     current = conn.execute(
         ' SELECT b.POSITION, b.FULL_NAME, b.GENDER, b.WEALTH / 1000, c.NAME, b.SOURCE, i.INDUSTRY, b.ID, b.GENDER, b.AGE, b.BIRTHDATE, b.CITY_OF_RESIDENCE, b.COUNTRY_OF_RESIDENCE, b.SOURCE  '
         ' FROM BILLIONAIRES b JOIN COUNTRIES c JOIN INDUSTRIES i '
@@ -50,7 +61,7 @@ def get_subject(subject):
 
 @app.route('/top10')
 def top10():
-    conn = sqlite3.connect('DB/Billionaires.db')
+    conn = get_db()
     cursor = conn.cursor()
     top10 = conn.execute(
         '''
@@ -67,7 +78,7 @@ def top10():
 
 @app.route('/top10/q1/<input>')  # get top ty BY COUNTRY
 def get_top10_by_country(input):
-    conn = sqlite3.connect('DB/Billionaires.db')
+    conn = get_db()
     # using prepared statement to avoid sql injection: https://en.wikipedia.org/wiki/SQL_injection#Root_causes
     top10_countries = conn.execute(
         f" SELECT b.POSITION, b.FULL_NAME, b.WEALTH / 1000, c.NAME, b.SOURCE "
@@ -83,7 +94,7 @@ def get_top10_by_country(input):
 
 @app.route('/top10/q2/<input>')
 def get_top10_by_industry(input):
-    conn = sqlite3.connect('DB/Billionaires.db')
+    conn = get_db()
     # using prepared statement to avoid sql injection: https://en.wikipedia.org/wiki/SQL_injection#Root_causes
     top10_industries = conn.execute(
         f" SELECT b.POSITION, b.FULL_NAME, b.WEALTH / 1000, c.NAME, b.SOURCE, i.industry "
@@ -101,8 +112,8 @@ def get_top10_by_industry(input):
 
 @app.route('/top10/q3/<input>')
 def get_top10_by_age(input):
-    conn = sqlite3.connect('DB/Billionaires.db')
-    # using prepared statement to avoid sql injection: https://en.wikipedia.org/wiki/SQL_injection#Root_causes
+    conn = get_db()   
+     # using prepared statement to avoid sql injection: https://en.wikipedia.org/wiki/SQL_injection#Root_causes
     top10_age = conn.execute(
         f" SELECT b.POSITION, b.FULL_NAME, b.WEALTH / 1000, c.NAME, b.SOURCE, i.industry, b.AGE "
         f" FROM BILLIONAIRES b JOIN COUNTRIES c JOIN INDUSTRIES i "
@@ -119,7 +130,7 @@ def get_top10_by_age(input):
 
 @app.route('/all-list')  # get top ty BY COUNTRY
 def get_all_list():
-    conn = sqlite3.connect('DB/Billionaires.db')
+    conn = get_db() 
     # using prepared statement to avoid sql injection: https://en.wikipedia.org/wiki/SQL_injection#Root_causes
     all_rank = conn.execute(
         '''
@@ -136,7 +147,7 @@ def get_all_list():
 
 @app.route('/all-list/q1/<input>')  # list all by asc age
 def get_all_list_age(input):
-    conn = sqlite3.connect('DB/Billionaires.db')
+    conn = get_db() 
     # using prepared statement to avoid sql injection: https://en.wikipedia.org/wiki/SQL_injection#Root_causes
     all_rank_age = conn.execute(
         f" SELECT b.POSITION, b.FULL_NAME, b.WEALTH, c.NAME, b.SOURCE, b.AGE "
@@ -148,10 +159,31 @@ def get_all_list_age(input):
     conn.close()
     return render_template('all_list/all_list_asc_age.html', all_rank_age=all_rank_age, input=input)
 
+@app.route('/all-list/q2/<input>') 
+def get_all_list_last_name(input):
+    conn = get_db()
+    cursor = conn.cursor()
+    input = input.capitalize()
+
+    query = """
+    SELECT b.FULL_NAME, b.AGE, b.WEALTH / 1000 AS WEALTH_IN_BILLIONS, c.NAME AS COUNTRY, b.SOURCE
+    FROM BILLIONAIRES b
+    JOIN COUNTRIES c ON b.ID_CITIZENSHIP = c.ID
+    WHERE b.LAST_NAME = ?
+    ORDER BY b.FULL_NAME;   
+    """
+    cursor.execute(query, (input,))
+    results = cursor.fetchall()
+    
+    if not results:
+        return render_template('erro.html', input=input)
+        
+    return render_template('all_list/all_list_by_last_name.html', input=input, all_rank_last_name=results)
+
 
 @app.route('/all-list/q3/<input>')  # get top ty BY COUNTRY
 def get_all_list_wealth(input):
-    conn = sqlite3.connect('DB/Billionaires.db')
+    conn = get_db() 
     min_wealth = int(input)
     # using prepared statement to avoid sql injection: https://en.wikipedia.org/wiki/SQL_injection#Root_causes
     all_rank_wealth = conn.execute(
@@ -168,10 +200,9 @@ def get_all_list_wealth(input):
     conn.close()
     return render_template('all_list/all_list_wealth.html', all_rank_wealth=all_rank_wealth, input=input)
 
-
 @app.route('/countries')
 def get_countries():
-    conn = sqlite3.connect('DB/Billionaires.db')
+    conn = get_db() 
     countries = conn.execute(
         '''
         SELECT NAME, CONTINENT, TAX_RATE, POPULATION, LIFE_EXPECTANCY
@@ -191,48 +222,69 @@ def get_countries():
 
 @app.route('/countries/q1/<input>')
 def get_how_great(input):
-    conn = sqlite3.connect('DB/Billionaires.db')
-    # todo REPLACE QUERY!
-    q1_how_great = conn.execute(
-        ''' 
-        SELECT * FROM BILLIONAIRES
-        '''
-    )
-    conn.commit()
-    # conn.close()
+    conn = get_db() 
+    cursor = conn.cursor()
+    input = input.title()
+    query = """
+    SELECT b.FULL_NAME, b.WEALTH / 1000 AS BILLIONAIRE_WEALTH, c.NAME AS COUNTRY, c.GDP / c.POPULATION AS AVERAGE_CITIZEN_WEALTH
+    FROM BILLIONAIRES b
+    JOIN COUNTRIES c ON b.ID_CITIZENSHIP = c.ID
+    WHERE b.FULL_NAME LIKE ? 
+    """
+
+    cursor.execute(query, ('%' + input + '%',))
+    q1_how_great = cursor.fetchall()
+
+    if not q1_how_great:
+        return render_template('erro.html', input=input)
+    
     return render_template('countries/countries_wealth.html', q1_how_great=q1_how_great, input=input)
 
 @app.route('/countries/q2/<input>')
 def get_years_left(input):
-    conn = sqlite3.connect('DB/Billionaires.db')
-    # todo REPLACE QUERY!
-    q2_born_at = conn.execute(
-        ''' 
-        SELECT * FROM BILLIONAIRES 
-        '''
-    )
-    conn.commit()
-    # conn.close()
+    conn = get_db() 
+    cursor = conn.cursor()
+    input = input.capitalize()
+
+    query = """
+    SELECT b.POSITION, b.FULL_NAME, b.WEALTH / 1000 AS BILLIONAIRE_WEALTH, b.SOURCE, b.AGE
+    FROM BILLIONAIRES b
+    JOIN COUNTRIES c ON b.ID_CITIZENSHIP = c.ID
+    WHERE c.NAME LIKE ?
+    ORDER BY b.POSITION ASC
+    """
+
+    cursor.execute(query, (input,))
+    q2_born_at = cursor.fetchall()
+
+    if not q2_born_at:
+        return render_template('erro.html', input=input)
+    
     return render_template('countries/countries_born_amount.html', input=input, q2_born_at=q2_born_at)
 
 @app.route('/countries/q3/<input>')
 def get_born_at(input):
-    conn = sqlite3.connect('DB/Billionaires.db')
-    # todo REPLACE QUERY!
-    q3_years_left = conn.execute(
-        ''' 
-        SELECT * FROM BILLIONAIRES
-        '''
-    )
-    conn.commit()
-    # conn.close()
+    conn = get_db() 
+    cursor = conn.cursor()
+    input = input.title()
+
+    query = """
+    SELECT b.FULL_NAME, b.AGE, 100 - b.AGE AS YEARS_LEFT, b.WEALTH / 1000 AS BILLIONAIRE_WEALTH, b.SOURCE
+    FROM BILLIONAIRES b
+    WHERE b.FULL_NAME LIKE ?
+    """
+
+    cursor.execute(query, (f'%{input}%',))
+    q3_years_left = cursor.fetchall()
+
+    if not q3_years_left:
+        return render_template('erro.html', input=input)
+    
     return render_template('countries/countries_years_left.html', input=input, q3_years_left=q3_years_left)
-
-
 
 @app.route('/industries')
 def all_list():
-    conn = sqlite3.connect('DB/Billionaires.db')
+    conn = get_db() 
     industries_list = conn.execute(
         '''
         SELECT * 
@@ -247,7 +299,7 @@ def all_list():
 
 @app.route('/industries/q1/<input>')
 def industries_specific_bil(input):
-    conn = sqlite3.connect('DB/Billionaires.db')
+    conn = get_db() 
     bil_per_ind = conn.execute(
         '''
         SELECT b.POSITION, b.FULL_NAME, b.WEALTH,  b.SOURCE, i.industry
@@ -264,7 +316,7 @@ def industries_specific_bil(input):
 
 @app.route('/industries/q2/<input>')
 def industries_amount_of_bil(input):
-    conn = sqlite3.connect('DB/Billionaires.db')
+    conn = get_db() 
     target = int(input)
     amount_of_bil = conn.execute(
         '''
@@ -283,7 +335,7 @@ def industries_amount_of_bil(input):
 
 @app.route('/industries/q3/<input>')
 def wealth_per_ind(input):
-    conn = sqlite3.connect('DB/Billionaires.db')
+    conn = get_db() 
     wealth_per_ind = conn.execute(
            f" SELECT i.INDUSTRY, SUM(b.WEALTH) / 1000 AS TOTAL_WEALTH"
            f" FROM BILLIONAIRES b JOIN INDUSTRIES i"
@@ -293,4 +345,5 @@ def wealth_per_ind(input):
         , ).fetchall()
     conn.commit()
     conn.close()
+
     return render_template('industries/industries_wealth.html', wealth_per_ind=wealth_per_ind, input=input)
