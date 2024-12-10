@@ -257,16 +257,15 @@ def get_born_at(input):
     WHERE c.NAME LIKE ?
     ORDER BY b.POSITION ASC
     """
-
-    how_many_billionaires = conn.execute(
-            f" SELECT COUNT(*) "
-            f" FROM BILLIONAIRES b "
-            f" JOIN COUNTRIES c ON b.ID_CITIZENSHIP = c.ID "
-            f" WHERE c.NAME LIKE '%{input}%'; "
-    )
-
+    conn = sqlite3.connect('DB/Billionaires.db')
     cursor.execute(query, (input,))
     q2_born_at = cursor.fetchall()
+    how_many_billionaires = conn.execute(
+        f" SELECT COUNT(*) "
+        f" FROM BILLIONAIRES b "
+        f" JOIN COUNTRIES c ON b.ID_CITIZENSHIP = c.ID "
+        f" WHERE c.NAME LIKE '%{input}%'; "
+    ).fetchall()
 
     if not q2_born_at:
         return render_template('erro.html', input=input)
@@ -280,9 +279,9 @@ def get_years_left(input):
     input = input.title()
 
     query = """
-    SELECT b.FULL_NAME, b.WEALTH / 1000, b.AGE, c.life_expectancy - b.AGE AS years_left, b.SOURCE
+    SELECT b.FULL_NAME, b.WEALTH / 1000, b.AGE, c.life_expectancy - b.AGE AS years_left, b.SOURCE, c.LIFE_EXPECTANCY, c.name
     FROM BILLIONAIRES b JOIN COUNTRIES c
-    ON b.id_industry = c.ID
+    ON b.ID_CITIZENSHIP = c.ID
     WHERE b.FULL_NAME LIKE ?
     """
 

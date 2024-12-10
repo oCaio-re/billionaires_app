@@ -4,74 +4,66 @@
         <p class="page-title">Billionaires: love or hate? <br/> &#128525; &#128545;</p>
     </div>
     <div class="countries-img-wrap">
-        <img class="countries-img" src="../../static/images/loved-hated-billionaires.png" alt="loved-hated-billionaires"/>
+        <img class="countries-img" src="../../static/images/loved-hated-billionaires.png"
+             alt="loved-hated-billionaires"/>
     </div>
 
     <div class="section-one-left" style="height: 40em; width: 65%; margin: 2em auto;">
-    <div class="content-wrap">
-        <div style="text-align: center; font-weight: bold; font-size: 2.2em; font-family: 'Nova Flat', sans-serif; margin-bottom: 1em">
-            Billionaires and Countries, what do they have in common?
-        </div>
-        <div class="forms-wrap">
-            <div class="forms-left">
-                <form class="country-form" name="wealthQuery"
-                      action="javascript:window.open('/countries/q1/'+document.forms['wealthQuery'].elements['expr'].value,'_self')">
-                    <p class="input-flag">Wealth:</p>
-                    <input class="country-input input" type="text" name="expr" id="expr" placeholder="Larry Page, Steve Balmer"
-                           required/>
-                    <input class="submit-button" type="submit" value="Get it"/>
-                </form>
-                <form class="country-form" name="countryQuery"
-                      action="javascript:window.open('/countries/q2/'+document.forms['countryQuery'].elements['expr'].value,'_self')">
-                    <p class="input-flag">Country:</p>
-                    <input class="country-input input" type="text" name="expr" id="expr" placeholder="portugal, brazil, mexico"
-                           required/>
-                    <input class="submit-button" type="submit" value="Get it"/>
-                </form>
-                <form class="country-form" name="nameQuery"
-                      action="javascript:window.open('/countries/q3/'+document.forms['nameQuery'].elements['expr'].value,'_self')">
-                    <p class="input-flag">Years left:</p>
-                    <input class="country-input input" type="text" name="expr" id="expr" placeholder="Jeff Bezos, Elon Musk"
-                           required/>
-                    <input class="submit-button" type="submit" value="Get it"/>
-                </form>
+        <div class="content-wrap">
+            <div style="text-align: center; font-weight: bold; font-size: 2.2em; font-family: 'Nova Flat', sans-serif; margin-bottom: 1em">
+                Billionaires and Countries, what do they have in common?
             </div>
-            <div class="forms-right">
-                <div class="right-row">
-                    <p>
-                        Type a <a href="http://localhost:5000/all-list"><b>billionaire’s name</b></a> and discover how great his wealth is comparing with an
-                        average
-                        citizen of his country.
-                    </p>
+            <div class="forms-wrap">
+                <div class="forms-left">
+                    <form class="country-form" name="wealthQuery"
+                          action="javascript:window.open('/countries/q1/'+document.forms['wealthQuery'].elements['expr'].value,'_self')">
+                        <p class="input-flag">Wealth:</p>
+                        <input class="country-input input" type="text" name="expr" id="expr"
+                               placeholder="Larry Page, Steve Balmer"
+                               required/>
+                        <input class="submit-button" type="submit" value="Get it"/>
+                    </form>
+                    <form class="country-form" name="countryQuery"
+                          action="javascript:window.open('/countries/q2/'+document.forms['countryQuery'].elements['expr'].value,'_self')">
+                        <p class="input-flag">Country:</p>
+                        <input class="country-input input" type="text" name="expr" id="expr"
+                               placeholder="portugal, brazil, mexico"
+                               required/>
+                        <input class="submit-button" type="submit" value="Get it"/>
+                    </form>
+                    <form class="country-form" name="nameQuery"
+                          action="javascript:window.open('/countries/q3/'+document.forms['nameQuery'].elements['expr'].value,'_self')">
+                        <p class="input-flag">Years left:</p>
+                        <input class="country-input input" type="text" name="expr" id="expr"
+                               placeholder="Jeff Bezos, Elon Musk"
+                               required/>
+                        <input class="submit-button" type="submit" value="Get it"/>
+                    </form>
                 </div>
-                <div class="right-row">
-                    <p>
-                        Now, type a <b>country name</b> and see how many billionaires were born there.
-                    </p>
-                </div>
-                <div class="right-row">
-                    <p>
-                        Input a <a href="http://localhost:5000/all-list"><b>billionaire’s name</b></a> and see <b>how many years</b> they <b>have left</b> to
-                        try and reach the top of the list! (on average :D) :X
-                    </p>
+                <div class="forms-right">
+                    <div class="right-row">
+                        <p>
+                            Type a <a href="http://localhost:5000/all-list" target="_blank"><b>billionaire’s name</b></a> and discover
+                            how great his wealth is comparing with an
+                            average
+                            citizen of his country.
+                        </p>
+                    </div>
+                    <div class="right-row">
+                        <p>
+                            Now, type a <a href="https://www.britannica.com/topic/list-of-countries-1993160" target="_blank"><b>country
+                            name</b></a> and see how many billionaires were born there.
+                        </p>
+                    </div>
+                    <div class="right-row">
+                        <p>
+                            Input a <a href="http://localhost:5000/all-list" target="_blank"><b>billionaire’s name</b></a> and see <b>how
+                            many years</b> they <b>have left</b> to
+                            try and reach the top of the list! (on average :D) :X
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-<div>
-    <div><p></p></div>
-    <div><p>Country</p><p>Count</p><p>Net Worth</p><p>Richest</p></div>
-    {% for row in countr_and_bill %}
-        <div style="display: flex;">
-            <div class="country-name">{{ row.0 }}</div>
-            <div class="country-count">{{ row.1 }}</div>
-            <div class="country-net-worth">{{ row.5 }}</div>
-            <div class="country-richest">#{{ row.6 }} {{ row.7 }}(${{ row.8 }}B)</div>
-        </div>
-    {% endfor %}
-{#    c.NAME, c.CONTINENT, c.TAX_RATE, c.POPULATION, c.LIFE_EXPECTANCY, c.GDP, b.POSITION, b.FULL_NAME, b.WEALTH#}
-</div>
-
 {% endblock %}

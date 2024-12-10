@@ -100,7 +100,7 @@
     border-radius: 20px;
     margin: 3em auto 3em auto;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    height: 80em;
+    height: auto;
     width: 65%;
     padding-top: 2em;
     font-family: Roboto, sans-serif;
@@ -139,6 +139,8 @@
     height: 10%;
     font-size: 1.5em;
     justify-content: space-around;
+    border-bottom: 1px solid #e0e0e0;
+    margin: 1em 0;
 }
 
 .row-wrap .row-position{

@@ -1,57 +1,5 @@
 {% extends 'base.html' %}
 {% block content %}
-{#<div class="section-one-left" style="height: 40em; width: 65%; margin: 2em auto;">#}
-{#    <div class="content-wrap">#}
-{#        <div style="text-align: center; font-weight: bold; font-size: 3.5em; font-family: 'Nova Flat', sans-serif; margin-bottom: 1em">#}
-{#            Get it sorted:#}
-{#        </div>#}
-{#        <div class="forms-wrap">#}
-{#            <div class="forms-left">#}
-{#                <form class="country-form" name="coutryQuery"#}
-{#                      action="javascript:window.open('/all-list/q1/'+document.forms['coutryQuery'].elements['expr'].value,'_self')">#}
-{#                    <p class="input-flag">By Age:</p>#}
-{#                    <input class="country-input input" type="text" name="expr" id="expr" placeholder="portugal"#}
-{#                           required/>#}
-{#                    <input class="submit-button" type="submit" value="Get it"/>#}
-{#                </form>#}
-{#                <form class="country-form" name="coutryQuery"#}
-{#                      action="javascript:window.open('/all-list/country/'+document.forms['coutryQuery'].elements['expr'].value,'_self')">#}
-{#                    <p class="input-flag">By Country:</p>#}
-{#                    <input class="country-input input" type="text" name="expr" id="expr" placeholder="portugal"#}
-{#                           required/>#}
-{#                    <input class="submit-button" type="submit" value="Get it"/>#}
-{#                </form>#}
-{#                <form class="country-form" name="coutryQuery"#}
-{#                      action="javascript:window.open('/top10/country/'+document.forms['coutryQuery'].elements['expr'].value,'_self')">#}
-{#                    <p class="input-flag">By Country:</p>#}
-{#                    <input class="country-input input" type="text" name="expr" id="expr" placeholder="portugal"#}
-{#                           required/>#}
-{#                    <input class="submit-button" type="submit" value="Get it"/>#}
-{#                </form>#}
-{#            </div>#}
-{#            <div class="forms-right">#}
-{#                <div class="right-row">#}
-{#                    <p>#}
-{#                        Type a <b>billionaire’s name</b> and discover how great his wealth is comparing with an#}
-{#                        average#}
-{#                        citizen of his country.#}
-{#                    </p>#}
-{#                </div>#}
-{#                <div class="right-row">#}
-{#                    <p>#}
-{#                        Now, type a <b>country name</b> and see how many billionaires were born there.#}
-{#                    </p>#}
-{#                </div>#}
-{#                <div class="right-row">#}
-{#                    <p>#}
-{#                        Input a <b>billionaire’s name</b> and see <b>how many years</b> they <b>have left</b> to#}
-{#                        try and reach the top of the list! (on average :D) :X#}
-{#                    </p>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-{#</div>#}
 <div style="margin: 2em auto 2em auto; justify-content: center; width: 30%;">
     <h1 style="color: #616161 ;width: 100%; text-align: center; font-size: 4em; font-family: Roboto, sans-serif">All rank sorted by age: {{ input }}</h1>
 </div>
@@ -61,12 +9,12 @@
             <u>THE WORLD'S RICHEST</u></p>
             <p style="font-size: 0.8em; margin-right: 2em;">Wealth(in millions)</p>
             <p style="font-size: 0.8em ; margin-right: 4em;">Country</p>
-            <p style="font-size: 0.8em">Brand</p>
+            <p style="font-size: 0.8em">Source</p>
         </div>
         <div class="table-wrap-two">
             {% for row in all_rank_age %}
             <div class="row-wrap">
-                <div class="row-position">#{{ row.0 }}</div>
+                <div class="row-position" style="color: #f1592a">#{{ row.0 }}</div>
                 <a class="row-name" href="/subject/{{ row.1 }}">{{ row.1 }} (Age: {{ row.5 }})</a>
                 <div class="row-wealth">${{ row.2 }} </div>
                 <div class="row-country">{{ row.3 }}</div>

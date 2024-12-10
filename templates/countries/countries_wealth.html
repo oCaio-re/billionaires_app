@@ -35,8 +35,8 @@
                         </div>
                     </div>
                     <div class="desc-wrap-wealth" style="">
-                        <p>{{ row[0] }} makes {{ "%.2f" | format(row[4]) }} times more than an average citizen makes per year.</p>
-                        <p>And {{ row[0] }} owns {{ "%.15f" | format(row[5]) }}% of the {{ row[2] }} GDP(Gross Domestic Product).</p>
+                        <p style="font-size: 1.5em; margin-top: 1em">{{ row[0] }} makes <b style="color: #f1592a">{{ "%.2f" | format(row[4]) }}</b> times more than an average citizen from {{ row[2] }} makes per year.</p>
+                        <p style="font-size: 1.5em; margin-top: 1em">And {{ row[0] }} owns <b style="color: #f1592a">{{ "%.15f" | format(row[5]) }}%</b> of the {{ row[2] }} GDP(Gross Domestic Product).</p>
 {#                        <p>This is {{ row[4] }}</p>#}
                     </div>
                 {% endfor %}
