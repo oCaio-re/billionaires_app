@@ -2,13 +2,33 @@
 ## Bases de Dados (CC2005)
 
 # Para executar:
-## Basta instalar o flask por:
+## Com ambiente virtual(virtual environment):
+### Criar um virtual environment:
 ``` shell
-    pip3 install flask
+    python3 -m venv .venv
 ```
-## E executar o comando:
+### Ativar o python path com o script 'activate':
 ``` shell
-  python3 server.py
+  $ source .venv/bin/activate
+```
+### Instalar as dependências:
+``` shell
+  pip install -r requirements.txt
+```
+### Executar a aplicação:
+``` shell
+  python3 app.py
+```
+
+## Sem ambiente virtual(virtual environment):
+### Instalar as dependências:
+``` shell
+  pip install -r requirements.txt
+```
+
+### Executar a aplicação:
+``` shell
+  python3 app.py
 ```
 
 # Objetivo
