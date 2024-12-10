@@ -5,7 +5,7 @@
         Wealth Comparison for <span style="color: #6a1b9a;">{{ input }}</span>
     </h1>
 </div>
-<div class="section-two-wrap" style="margin: 2em auto; width: 80%; background: #f9f9f9; padding: 1.5em; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+<div class="section-two-wrap" style="height: auto;margin: 2em auto; width: 80%; background: #f9f9f9; padding: 1.5em; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
     <div class="content-wrap-two">
         <div class="title-wrap-two" style="display: flex; justify-content: space-around; font-weight: bold; border-bottom: 2px solid #000; padding-bottom: 0.5em;">
             <div style="width: 30%; text-align: center;">Name</div>
@@ -17,9 +17,9 @@
             {% if q1_how_great %}
                 {% for row in q1_how_great %}
                     <div class="row-wrap" style="display: flex; justify-content: space-around; padding: 1em; border-bottom: 1px solid #e0e0e0; text-align: center;">
-                        <div style="width: 30%; font-size: 1.2em; color: #6a1b9a; font-family: 'Roboto', sans-serif;">
+                        <a href="http://localhost:5000/subject/{{ row.0 }}" style="width: 30%; font-size: 1.2em; color: #6a1b9a; font-family: 'Roboto', sans-serif;">
                             {{ row[0] }}
-                        </div>
+                        </a>
                         <div style="width: 20%; font-size: 1.2em; color: #388e3c;">
                             {{ "%.1f" | format(row[1]) }}
                         </div>
@@ -33,6 +33,11 @@
                                 {{ "%.2f" | format(row[3] / 1000) }}K
                             {% endif %}
                         </div>
+                    </div>
+                    <div class="desc-wrap-wealth" style="">
+                        <p>{{ row[0] }} makes {{ "%.2f" | format(row[4]) }} times more than an average citizen makes per year.</p>
+                        <p>And {{ row[0] }} owns {{ "%.15f" | format(row[5]) }}% of the {{ row[2] }} GDP(Gross Domestic Product).</p>
+{#                        <p>This is {{ row[4] }}</p>#}
                     </div>
                 {% endfor %}
             {% else %}

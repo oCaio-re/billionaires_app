@@ -5,7 +5,7 @@ from app import app
 import db
 
 def sqlite_security(conn):
-    #? Disable untruted schema modifications
+    #? Disable untrusted schema modifications
     conn.execute("PRAGMA trusted_schema = OFF;")
     #? More integrity checks
     conn.execute("PRAGMA cell_size_check = ON;")
@@ -157,6 +157,9 @@ def get_all_list_age(input):
         , ).fetchall()
     conn.commit()
     conn.close()
+    if not all_rank_age:
+        return render_template('erro.html', input=input)
+    
     return render_template('all_list/all_list_asc_age.html', all_rank_age=all_rank_age, input=input)
 
 @app.route('/all-list/q2/<input>') 
@@ -226,7 +229,7 @@ def get_how_great(input):
     cursor = conn.cursor()
     input = input.title()
     query = """
-    SELECT b.FULL_NAME, b.WEALTH / 1000 AS BILLIONAIRE_WEALTH, c.NAME AS COUNTRY, c.GDP / c.POPULATION AS AVERAGE_CITIZEN_WEALTH
+    SELECT b.FULL_NAME, b.WEALTH / 1000 AS BILLIONAIRE_WEALTH, c.NAME AS COUNTRY, c.GDP / c.POPULATION AS AVERAGE_CITIZEN_WEALTH, (b.WEALTH * 1000) / (c.GDP / c.POPULATION) AS RATIO, (b.WEALTH * 1000) / c.GDP 
     FROM BILLIONAIRES b
     JOIN COUNTRIES c ON b.ID_CITIZENSHIP = c.ID
     WHERE b.FULL_NAME LIKE ? 
@@ -241,7 +244,8 @@ def get_how_great(input):
     return render_template('countries/countries_wealth.html', q1_how_great=q1_how_great, input=input)
 
 @app.route('/countries/q2/<input>')
-def get_years_left(input):
+def get_born_at(input):
+
     conn = get_db() 
     cursor = conn.cursor()
     input = input.capitalize()
@@ -254,23 +258,31 @@ def get_years_left(input):
     ORDER BY b.POSITION ASC
     """
 
+    how_many_billionaires = conn.execute(
+            f" SELECT COUNT(*) "
+            f" FROM BILLIONAIRES b "
+            f" JOIN COUNTRIES c ON b.ID_CITIZENSHIP = c.ID "
+            f" WHERE c.NAME LIKE '%{input}%'; "
+    )
+
     cursor.execute(query, (input,))
     q2_born_at = cursor.fetchall()
 
     if not q2_born_at:
         return render_template('erro.html', input=input)
     
-    return render_template('countries/countries_born_amount.html', input=input, q2_born_at=q2_born_at)
+    return render_template('countries/countries_born_amount.html', input=input, q2_born_at=q2_born_at, how_many_billionaires=how_many_billionaires)
 
 @app.route('/countries/q3/<input>')
-def get_born_at(input):
-    conn = get_db() 
+def get_years_left(input):
+    conn = get_db()
     cursor = conn.cursor()
     input = input.title()
 
     query = """
-    SELECT b.FULL_NAME, b.AGE, 100 - b.AGE AS YEARS_LEFT, b.WEALTH / 1000 AS BILLIONAIRE_WEALTH, b.SOURCE
-    FROM BILLIONAIRES b
+    SELECT b.FULL_NAME, b.WEALTH / 1000, b.AGE, c.life_expectancy - b.AGE AS years_left, b.SOURCE
+    FROM BILLIONAIRES b JOIN COUNTRIES c
+    ON b.id_industry = c.ID
     WHERE b.FULL_NAME LIKE ?
     """
 

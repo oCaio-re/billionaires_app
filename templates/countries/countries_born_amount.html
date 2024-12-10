@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 <div style="margin: 2em auto; text-align: center;">
-    <h1 style="font-family: 'Roboto', sans-serif; font-size: 2.5em; color: #333;">THE WORLD'S RICHEST</h1>
+    <h1 style="font-family: 'Roboto', sans-serif; font-size: 2.5em; color: #333;">Top Billionaires From {{ input }}: {{ how_many_billionaires }}</h1>
 </div>
 <div class="section-two-wrap" style="height: auto;">
     <div class="content-wrap-two">
@@ -15,18 +15,18 @@
         <div class="table-wrap-two">
             {% if q2_born_at %}
                 {% for row in q2_born_at %}
-                    <div class="row-wrap" style="display: flex; justify-content: space-between; padding: 1em; border-bottom: 1px solid #e0e0e0;">
-                        <div style="width: 10%; text-align: left; color: #f1592a; font-weight: bold;">#{{ row[0] }}</div>
-                        <div style="width: 40%; text-align: left; font-size: 1.2em; color: #6a1b9a; font-family: 'Roboto', sans-serif;">
+                    <div class="row-wrap" style="display: flex; justify-content: space-between; padding: 1em; border-bottom: 1px solid #e0e0e0; font-family: Nova Flat, sans-serif;">
+                        <div style="width: 10%; text-align: left; color: #f1592a; font-weight: bold; font-family: Roboto, sans-serif">#{{ row[0] }}</div>
+                        <a href="http://localhost:5000/subject/{{ row.1 }}" style="width: 40%; text-align: left; font-size: 1.2em; color: #6a1b9a;">
                             {{ row[1] }}
-                        </div>
+                        </a>
                         <div style="width: 20%; text-align: center; font-size: 1.2em; color: #388e3c;">
-                            {{ row[2] }}
+                            ${{ row[2] }}
                         </div>
                         <div style="width: 10%; text-align: center; font-size: 1em; color: #000;">
                             {{ row[4] }}
                         </div>
-                        <div style="width: 20%; text-align: left; font-size: 1em; color: #00796b; font-style: italic;">
+                        <div style="width: 20%; text-align: left; font-size: 1em; color: #00796b;">
                             {{ row[3] }}
                         </div>
                     </div>
