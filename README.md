@@ -9,7 +9,7 @@
 ```
 ### Ativar o python path com o script 'activate':
 ``` shell
-  $ source .venv/bin/activate
+  source .venv/bin/activate
 ```
 ### Instalar as dependências:
 ``` shell
