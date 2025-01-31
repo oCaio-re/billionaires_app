@@ -1,6 +1,10 @@
 # Database Project
 ## Databases (CC2005)
 
+This project aims to present some quorks about the top world Billionaires (2022).
+In the Back-End: Python to expose the database and Flask to interact and query specific data about some/many billionaire(s).
+In the Front-End: HTML and CSS displaying the required data.
+
 # To Run:
 ## With virtual environment:
 ### Create a virtual environment:
